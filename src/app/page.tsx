@@ -6,6 +6,7 @@ import { Included } from "@/components/sections/included";
 import { Schedule } from "@/components/sections/schedule";
 import { Pricing } from "@/components/sections/pricing";
 import { Team } from "@/components/sections/team";
+import { Application } from "@/components/sections/application";
 import { Contact } from "@/components/sections/contact";
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
       <Schedule />
       <Pricing />
       <Team />
+      <Application />
       <Contact />
     </>
   );
