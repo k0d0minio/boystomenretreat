@@ -12,7 +12,6 @@ export const site = {
   whatsapp: "https://wa.me/34600235207",
   instagram: "https://www.instagram.com/boystomenretreat",
   instagramHandle: "@boystomenretreat",
-  builtBy: "PATRICK MALEZ",
   year: 2026,
 };
 
