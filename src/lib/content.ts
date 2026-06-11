@@ -22,6 +22,7 @@ export const nav = [
   { label: "Included", href: "/#included" },
   { label: "Schedule", href: "/#schedule" },
   { label: "Team", href: "/#team" },
+  { label: "Apply", href: "/#apply" },
   { label: "Contact", href: "/#contact" },
 ];
 
