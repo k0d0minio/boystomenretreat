@@ -29,6 +29,12 @@ export function Why() {
                 <p className="text-lg leading-relaxed text-muted-foreground">{paragraph}</p>
               </Reveal>
             ))}
+
+            <Reveal delay={why.paragraphs.length * 0.08}>
+              <blockquote className="border-l-2 border-accent pl-5 font-heading text-xl font-medium leading-relaxed text-foreground text-balance">
+                {why.closing}
+              </blockquote>
+            </Reveal>
           </div>
         </div>
       </div>

@@ -51,6 +51,8 @@ export const why = {
     { range: "9 – 13", label: "Younger group" },
     { range: "13 – 16", label: "Older group" },
   ],
+  closing:
+    "I'm not promising to “fix” your son in four days. But we are creating an experience he'll remember for the rest of his life — one that plants the kind of seeds that grow into a strong, grounded, capable young man.",
 };
 
 export const outcomes = {
@@ -163,12 +165,13 @@ export const pricing = {
 
 export const team = {
   heading: "Meet the team",
-  subheading: "Strong, dependable role models who lead by example.",
+  subheading:
+    "We believe young men don't just need instruction — they need presence, guidance and strong role models. Our team is here to create an environment of trust, challenge, brotherhood and growth.",
   members: [
     {
       name: "Maxim Rettich",
       role: "Founder & Host",
-      bio: "54 years old and Dutch by birth, fluent in English and Spanish. A father of two (9 and 13) based in Ericeira, Portugal. His life journey has taken him across the world, shaped by a deep passion for sports, personal growth and the pursuit of something more meaningful.",
+      bio: "54 years old and Dutch by birth, fluent in English and Spanish, and a certified breathwork facilitator. A father of two — a 9-year-old son and a 13-year-old daughter — based in Ericeira, Portugal. His life journey has taken him across the world, shaped by a deep passion for sports, personal growth and the pursuit of something more meaningful.",
       initials: "MR",
     },
     {
@@ -210,7 +213,7 @@ export const about = {
     },
     {
       title: "How he works today",
-      body: "Maxim operates from authentic values and purpose. His work with youth brings together breathwork, surfing, skateboarding, beach challenges, cold immersion, bonfires and group discussions — all designed to encourage stepping beyond comfort zones, building self-assurance and fostering deeper self-awareness and connection.",
+      body: "Maxim operates from authentic values and purpose. As a certified breathwork facilitator, his work with youth brings together breathwork, surfing, skateboarding, beach challenges, cold immersion, bonfires and group discussions — all designed to encourage stepping beyond comfort zones, building self-assurance and fostering deeper self-awareness and connection.",
     },
   ],
   mission:
