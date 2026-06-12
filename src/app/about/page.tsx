@@ -19,8 +19,8 @@ export default function AboutPage() {
         <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-secondary/60 to-background" />
         <div className="mx-auto max-w-3xl px-4 pb-12 pt-20 sm:px-6 sm:pb-16 sm:pt-28">
           <Reveal>
-            <p className="text-sm font-semibold uppercase tracking-wider text-primary">About</p>
-            <h1 className="mt-3 font-heading text-4xl font-extrabold tracking-tight text-balance sm:text-5xl">
+            <p className="eyebrow">About</p>
+            <h1 className="mt-3 font-heading text-4xl font-extrabold uppercase tracking-tight text-balance sm:text-5xl">
               {about.heading}
             </h1>
             <p className="mt-6 text-xl leading-relaxed text-muted-foreground text-balance">
@@ -35,7 +35,7 @@ export default function AboutPage() {
           {about.sections.map((section, i) => (
             <Reveal key={section.title} delay={i * 0.05}>
               <div>
-                <h2 className="font-heading text-2xl font-bold tracking-tight">{section.title}</h2>
+                <h2 className="font-heading text-2xl font-bold uppercase tracking-tight">{section.title}</h2>
                 <p className="mt-3 text-lg leading-relaxed text-muted-foreground">{section.body}</p>
               </div>
             </Reveal>
@@ -52,7 +52,7 @@ export default function AboutPage() {
         </Reveal>
 
         <Reveal className="mt-12 flex justify-center">
-          <Button asChild size="lg">
+          <Button asChild size="lg" variant="accent">
             <Link href="/#contact">
               Join the next retreat
               <ArrowRight className="size-4" />
