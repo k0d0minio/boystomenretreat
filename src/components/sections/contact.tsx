@@ -9,7 +9,8 @@ export function Contact() {
     <section id="contact" className="scroll-mt-20 border-t border-border">
       <div className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 sm:py-28">
         <Reveal>
-          <h2 className="font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+          <p className="eyebrow">Get in touch</p>
+          <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
             {contact.heading}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-muted-foreground text-balance">

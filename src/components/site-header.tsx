@@ -13,6 +13,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 import { nav, site } from "@/lib/content";
 
@@ -54,12 +55,14 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Button asChild size="sm" className="ml-2">
+          <ThemeToggle className="ml-1" />
+          <Button asChild variant="accent" size="sm" className="ml-1">
             <Link href="/#contact">Book a place</Link>
           </Button>
         </nav>
 
-        <div className="md:hidden">
+        <div className="flex items-center gap-1 md:hidden">
+          <ThemeToggle />
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" aria-label="Open menu">
@@ -87,7 +90,7 @@ export function SiteHeader() {
                   </SheetClose>
                 ))}
                 <SheetClose asChild>
-                  <Button asChild className="mt-3">
+                  <Button asChild variant="accent" className="mt-3">
                     <Link href="/#contact">Book a place</Link>
                   </Button>
                 </SheetClose>

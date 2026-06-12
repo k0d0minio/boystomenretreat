@@ -9,7 +9,8 @@ export function Outcomes() {
     <section className="scroll-mt-20 border-t border-border">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+          <p className="eyebrow">The outcomes</p>
+          <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
             {outcomes.heading}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-balance">{outcomes.subheading}</p>

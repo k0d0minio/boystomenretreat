@@ -7,7 +7,7 @@ export function Included() {
     <section id="included" className="scroll-mt-20 border-t border-border">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-primary">The experience</p>
+          <p className="eyebrow">The experience</p>
           <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
             {included.heading}
           </h2>

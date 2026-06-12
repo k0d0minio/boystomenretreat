@@ -31,7 +31,7 @@ export function Hero() {
       <div className="mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pb-28 sm:pt-24">
         <motion.div variants={container} initial="hidden" animate="visible" className="mx-auto max-w-3xl text-center">
           <motion.div variants={item} className="flex justify-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-accent/50 bg-accent/20 px-4 py-1.5 text-sm font-medium text-accent-foreground">
+            <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-sm font-semibold text-accent">
               <Sparkles className="size-4" />
               {hero.badge}
             </span>
@@ -54,7 +54,7 @@ export function Hero() {
           </motion.div>
 
           <motion.div variants={item} className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild size="lg" className="w-full sm:w-auto">
+            <Button asChild size="lg" variant="accent" className="w-full sm:w-auto">
               <Link href={hero.primaryCta.href}>
                 {hero.primaryCta.label}
                 <ArrowRight className="size-4" />

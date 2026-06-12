@@ -7,7 +7,7 @@ export function Why() {
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
           <Reveal>
-            <p className="text-sm font-semibold uppercase tracking-wider text-primary">The mission</p>
+            <p className="eyebrow">The mission</p>
             <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
               {why.heading}
             </h2>

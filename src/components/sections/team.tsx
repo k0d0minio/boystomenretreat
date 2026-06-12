@@ -7,7 +7,8 @@ export function Team() {
     <section id="team" className="scroll-mt-20 border-t border-border bg-card">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <h2 className="font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+          <p className="eyebrow">The people</p>
+          <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
             {team.heading}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-balance">{team.subheading}</p>
