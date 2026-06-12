@@ -20,7 +20,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-3xl px-4 pb-12 pt-20 sm:px-6 sm:pb-16 sm:pt-28">
           <Reveal>
             <p className="eyebrow">About</p>
-            <h1 className="mt-3 font-heading text-4xl font-extrabold tracking-tight text-balance sm:text-5xl">
+            <h1 className="mt-3 font-heading text-4xl font-extrabold uppercase tracking-tight text-balance sm:text-5xl">
               {about.heading}
             </h1>
             <p className="mt-6 text-xl leading-relaxed text-muted-foreground text-balance">
@@ -35,7 +35,7 @@ export default function AboutPage() {
           {about.sections.map((section, i) => (
             <Reveal key={section.title} delay={i * 0.05}>
               <div>
-                <h2 className="font-heading text-2xl font-bold tracking-tight">{section.title}</h2>
+                <h2 className="font-heading text-2xl font-bold uppercase tracking-tight">{section.title}</h2>
                 <p className="mt-3 text-lg leading-relaxed text-muted-foreground">{section.body}</p>
               </div>
             </Reveal>

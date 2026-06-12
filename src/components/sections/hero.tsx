@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowRight, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, CalendarDays, MapPin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { hero, site } from "@/lib/content";
@@ -20,26 +20,22 @@ export function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden">
-      {/* Ambient ocean gradient backdrop */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/60 via-background to-background" />
-        <div className="absolute -top-40 left-1/2 size-[42rem] -translate-x-1/2 rounded-full bg-primary/15 blur-3xl" />
-        <div className="absolute right-[-10%] top-20 size-80 rounded-full bg-accent/30 blur-3xl" />
-      </div>
+    <section className="relative overflow-hidden border-b border-border">
+      {/* Grounded earthy backdrop — flat wash, no soft glows */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-secondary/50 via-background to-background" />
 
       <div className="mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pb-28 sm:pt-24">
         <motion.div variants={container} initial="hidden" animate="visible" className="mx-auto max-w-3xl text-center">
           <motion.div variants={item} className="flex justify-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-sm font-semibold text-accent">
-              <Sparkles className="size-4" />
+            <span className="inline-flex items-center gap-2 rounded-sm border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-accent">
+              <CalendarDays className="size-3.5" />
               {hero.badge}
             </span>
           </motion.div>
 
           <motion.h1
             variants={item}
-            className="mt-6 font-heading text-4xl font-extrabold tracking-tight text-balance sm:text-6xl"
+            className="mt-6 font-heading text-4xl font-extrabold uppercase tracking-tight text-balance sm:text-6xl"
           >
             {hero.title}
           </motion.h1>
@@ -76,7 +72,7 @@ export function Hero() {
             <motion.div
               key={stat.value + stat.label}
               variants={item}
-              className="rounded-xl border border-border bg-card/70 p-4 text-center backdrop-blur-sm"
+              className="rounded-md border border-border bg-card p-4 text-center"
             >
               <dt className="font-heading text-2xl font-bold text-primary">{stat.value}</dt>
               <dd className="mt-1 text-sm text-muted-foreground">{stat.label}</dd>

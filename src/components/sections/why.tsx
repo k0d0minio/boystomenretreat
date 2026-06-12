@@ -8,7 +8,7 @@ export function Why() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
           <Reveal>
             <p className="eyebrow">The mission</p>
-            <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+            <h2 className="mt-3 font-heading text-3xl font-bold uppercase tracking-tight text-balance sm:text-4xl">
               {why.heading}
             </h2>
             <p className="mt-5 text-xl font-medium text-foreground text-balance">{why.lead}</p>

@@ -143,7 +143,7 @@ export function ApplicationForm() {
   );
 
   return (
-    <div className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-2xl border border-border bg-card shadow-xl">
+    <div className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-2xl border border-border bg-card">
       {/* Progress bar */}
       <div className="absolute inset-x-0 top-0 z-10 h-1 bg-muted">
         <motion.div

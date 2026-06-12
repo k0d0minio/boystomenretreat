@@ -10,13 +10,24 @@ every section. **Change values at the token layer — never hardcode colours in 
 A grounded, masculine **rite of passage** — surfing, skating, cold plunges and campfire
 circles on the Atlantic coast of Ericeira. The design should feel:
 
-- **Rugged & earthy** — natural, tactile, strong; never corporate or cute.
+- **Rugged & earthy** — natural, tactile, weathered; never corporate, cute or bubbly.
 - **Grounded & confident** — quiet authority, not hype.
 - **Reassuring to parents, adventurous to boys** — warm and trustworthy, with energy.
 
-The palette expresses this through **deep Atlantic navy**, **warm sand**, an **ember /
-terracotta** accent (campfire), and **warm charcoal** text. Light mode reads as warm coastal
-daylight; dark mode as dusk around the fire.
+The palette expresses this through **weathered forest-olive green**, **oatmeal / clay**, an
+**ember / terracotta** accent (campfire), and **stone & charcoal** text. Light mode reads as
+sun-bleached natural daylight; dark mode as forest dusk around the fire.
+
+The *tone* is reinforced by four deliberate choices, not colour alone:
+
+- **Squared-off geometry** — `--radius` is a tight `0.25rem`; corners are nearly square, not
+  soft. Cards, tiles and panels are constructed with visible **solid borders**, not soft rings
+  or drop-shadows.
+- **Film-grain texture** — a subtle fixed grain overlay (`body::after` in `globals.css`) gives
+  every surface an analog, tactile finish instead of a flat digital one.
+- **Calm motion** — no hover-scale, hover-lift or glowing blurs. Reveals are quiet fades.
+- **Uppercase display type** — headlines and the wordmark are set in uppercase condensed
+  Oswald for an outdoor-signage / field-guide feel.
 
 ## Colour tokens
 
@@ -25,16 +36,16 @@ the **semantic name** (e.g. `bg-primary`, `text-muted-foreground`), never a raw 
 
 | Token | Role | Light | Dark |
 | --- | --- | --- | --- |
-| `background` / `foreground` | Page base / body text | warm off-white / woodsmoke charcoal | deep night-blue / warm off-white |
-| `card` / `card-foreground` | Raised surfaces | near-white warm / charcoal | lifted night-blue / off-white |
-| `primary` / `primary-foreground` | Atlantic navy — primary brand, links, stat figures | deep navy / warm white | lifted ocean blue / near-black |
-| `accent` / `accent-foreground` | **Ember/terracotta — conversion CTAs, eyebrows, highlights** | terracotta / white | glowing ember / near-black |
-| `secondary` / `secondary-foreground` | Warm sand — soft fills, emoji chips, badges | sand / deep brown | muted blue-gray / off-white |
-| `muted` / `muted-foreground` | Subtle fills / secondary text | light sand / warm stone gray | dark blue-gray / warm light gray |
-| `border` / `input` | Lines, dividers, fields | sand border | translucent white 10–15% |
+| `background` / `foreground` | Page base / body text | warm oatmeal / warm charcoal | deep forest-charcoal / warm oatmeal |
+| `card` / `card-foreground` | Raised surfaces (solid border, no shadow) | light cream / charcoal | lifted forest-charcoal / oatmeal |
+| `primary` / `primary-foreground` | Weathered forest green — primary brand, links, figures | forest green / cream | lifted sage-moss / near-black |
+| `accent` / `accent-foreground` | **Ember/terracotta — conversion CTAs, eyebrows, highlights** | weathered terracotta / cream | glowing ember / near-black |
+| `secondary` / `secondary-foreground` | Clay / tan — soft fills, emoji chips, badges | clay / deep brown | muted olive-gray / oatmeal |
+| `muted` / `muted-foreground` | Subtle fills / secondary text | muted sand / stone grey-brown | dark olive-gray / warm light gray |
+| `border` / `input` | Lines, dividers, fields (visible, earthy) | earthy sand border | translucent white 12–14% |
 | `ring` | Focus outline | = primary | = primary |
 | `destructive` | Errors | red | red |
-| `chart-1…5` | Decorative ramp (gallery tiles, gradients) | navy · teal · ember · gold · deep-navy | same hues, dark-tuned |
+| `chart-1…5` | Decorative ramp (gallery tiles, gradients) | forest · olive · ember · clay-gold · deep-moss | same hues, dark-tuned |
 
 **Accent discipline:** ember is the single attention colour. Use it for the **primary
 conversion CTA** ("Book a place", "Reserve a place", "Join the next retreat") and section
@@ -54,7 +65,9 @@ exposed as CSS variables; the `@theme` block in `globals.css` maps `--font-headi
 ### Type utilities (in `globals.css`)
 
 - **`.font-heading`** — condensed display face at weight 600. Pair with Tailwind size/weight
-  utilities (`text-4xl font-bold tracking-tight`) on headings.
+  utilities (`text-4xl font-bold tracking-tight`) on headings. **Major headings (`h1`/`h2`) and
+  the brand wordmark are set `uppercase`** for the outdoor-signage feel; card titles (`h3`) stay
+  sentence case for readability.
 - **`.eyebrow`** — uppercase, letter-spaced (`0.2em`), ember-coloured kicker label placed
   above a section heading (e.g. *The mission*, *The experience*, *On the coast*). This is the
   signature rugged/editorial detail; every major section uses one.
@@ -72,8 +85,10 @@ exposed as CSS variables; the `@theme` block in `globals.css` maps `--font-headi
 
 ## Radius & spacing
 
-- `--radius: 0.75rem` base; the `--radius-sm…4xl` scale in `@theme` derives from it. Buttons
-  use `rounded-lg`, cards `rounded-xl`, feature panels `rounded-2xl`/`rounded-3xl`.
+- `--radius: 0.25rem` base (squared, rugged); the `--radius-sm…4xl` scale in `@theme` derives
+  from it. Buttons use `rounded-lg`, cards `rounded-xl`, feature panels `rounded-2xl`/
+  `rounded-3xl` — all read as near-square at this small base radius.
+- Surfaces are framed with **solid `border border-border`**, not soft rings or drop-shadows.
 - Sections use a consistent vertical rhythm: `py-20 sm:py-28`, content capped at `max-w-6xl`
   (narrower for prose), separated by `border-t border-border`. Alternating sections use
   `bg-card` to create banding.

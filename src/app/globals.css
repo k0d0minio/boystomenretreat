@@ -49,76 +49,76 @@
 }
 
 :root {
-  /* Boys To Men — "Rugged & earthy" brand system.
-     Deep Atlantic navy + warm sand + ember/terracotta accent + warm charcoal.
-     Light = warm coastal daylight. */
-  --background: oklch(0.98 0.008 85); /* warm sand-paper off-white */
-  --foreground: oklch(0.24 0.018 250); /* deep woodsmoke charcoal */
-  --card: oklch(0.995 0.004 85);
-  --card-foreground: oklch(0.24 0.018 250);
-  --popover: oklch(0.995 0.004 85);
-  --popover-foreground: oklch(0.24 0.018 250);
-  --primary: oklch(0.4 0.085 240); /* deep Atlantic navy */
-  --primary-foreground: oklch(0.98 0.01 85);
-  --secondary: oklch(0.92 0.03 80); /* warm sand */
-  --secondary-foreground: oklch(0.32 0.04 60);
-  --muted: oklch(0.95 0.015 80);
-  --muted-foreground: oklch(0.48 0.03 65); /* warm stone gray */
-  --accent: oklch(0.62 0.16 45); /* ember / terracotta */
-  --accent-foreground: oklch(0.99 0.01 85);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.88 0.02 75);
-  --input: oklch(0.88 0.02 75);
-  --ring: oklch(0.4 0.085 240);
-  --chart-1: oklch(0.4 0.085 240); /* navy */
-  --chart-2: oklch(0.55 0.09 215); /* atlantic teal */
-  --chart-3: oklch(0.62 0.16 45); /* ember */
-  --chart-4: oklch(0.75 0.09 70); /* warm gold / sand */
-  --chart-5: oklch(0.32 0.07 250); /* deep night navy */
-  --radius: 0.75rem;
-  --sidebar: oklch(0.97 0.01 80);
-  --sidebar-foreground: oklch(0.24 0.018 250);
-  --sidebar-primary: oklch(0.4 0.085 240);
-  --sidebar-primary-foreground: oklch(0.98 0.01 85);
-  --sidebar-accent: oklch(0.92 0.03 80);
-  --sidebar-accent-foreground: oklch(0.32 0.04 60);
-  --sidebar-border: oklch(0.88 0.02 75);
-  --sidebar-ring: oklch(0.4 0.085 240);
+  /* Boys To Men — "Earthy & weathered" brand system.
+     Oatmeal / clay + weathered forest-olive + ember accent + stone & charcoal.
+     Light = sun-bleached natural daylight; grounded, tactile, return-to-nature. */
+  --background: oklch(0.95 0.013 80); /* warm oatmeal */
+  --foreground: oklch(0.25 0.012 70); /* deep warm charcoal */
+  --card: oklch(0.97 0.011 82); /* light cream panel */
+  --card-foreground: oklch(0.25 0.012 70);
+  --popover: oklch(0.97 0.011 82);
+  --popover-foreground: oklch(0.25 0.012 70);
+  --primary: oklch(0.41 0.055 150); /* weathered forest green */
+  --primary-foreground: oklch(0.96 0.012 85);
+  --secondary: oklch(0.87 0.03 72); /* clay / tan */
+  --secondary-foreground: oklch(0.33 0.04 60);
+  --muted: oklch(0.91 0.016 76); /* muted sand */
+  --muted-foreground: oklch(0.46 0.022 68); /* stone grey-brown */
+  --accent: oklch(0.57 0.14 45); /* weathered ember / terracotta */
+  --accent-foreground: oklch(0.97 0.012 85);
+  --destructive: oklch(0.55 0.2 27);
+  --border: oklch(0.83 0.022 72); /* visible earthy border */
+  --input: oklch(0.83 0.022 72);
+  --ring: oklch(0.41 0.055 150);
+  --chart-1: oklch(0.41 0.055 150); /* forest */
+  --chart-2: oklch(0.55 0.06 120); /* olive */
+  --chart-3: oklch(0.57 0.14 45); /* ember */
+  --chart-4: oklch(0.67 0.07 66); /* clay gold */
+  --chart-5: oklch(0.3 0.035 150); /* deep moss */
+  --radius: 0.25rem; /* squared-off, rugged geometry */
+  --sidebar: oklch(0.93 0.014 78);
+  --sidebar-foreground: oklch(0.25 0.012 70);
+  --sidebar-primary: oklch(0.41 0.055 150);
+  --sidebar-primary-foreground: oklch(0.96 0.012 85);
+  --sidebar-accent: oklch(0.87 0.03 72);
+  --sidebar-accent-foreground: oklch(0.33 0.04 60);
+  --sidebar-border: oklch(0.83 0.022 72);
+  --sidebar-ring: oklch(0.41 0.055 150);
 }
 
 .dark {
-  /* Dusk / campfire — deep woodsmoke night with a glowing ember accent. */
-  --background: oklch(0.2 0.018 250);
-  --foreground: oklch(0.94 0.012 85);
-  --card: oklch(0.24 0.02 250);
-  --card-foreground: oklch(0.94 0.012 85);
-  --popover: oklch(0.24 0.02 250);
-  --popover-foreground: oklch(0.94 0.012 85);
-  --primary: oklch(0.64 0.1 230); /* lifted ocean blue, reads on dark */
-  --primary-foreground: oklch(0.16 0.02 250);
-  --secondary: oklch(0.3 0.025 250);
-  --secondary-foreground: oklch(0.94 0.012 85);
-  --muted: oklch(0.28 0.02 250);
-  --muted-foreground: oklch(0.72 0.02 80);
-  --accent: oklch(0.68 0.17 48); /* glowing ember */
-  --accent-foreground: oklch(0.18 0.03 50);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.64 0.1 230);
-  --chart-1: oklch(0.64 0.1 230); /* ocean */
-  --chart-2: oklch(0.55 0.08 200); /* teal */
-  --chart-3: oklch(0.68 0.17 48); /* ember */
-  --chart-4: oklch(0.72 0.09 70); /* gold */
-  --chart-5: oklch(0.42 0.08 245); /* deep navy */
-  --sidebar: oklch(0.24 0.02 250);
-  --sidebar-foreground: oklch(0.94 0.012 85);
-  --sidebar-primary: oklch(0.64 0.1 230);
-  --sidebar-primary-foreground: oklch(0.16 0.02 250);
-  --sidebar-accent: oklch(0.3 0.025 250);
-  --sidebar-accent-foreground: oklch(0.94 0.012 85);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.64 0.1 230);
+  /* Forest dusk / campfire — deep forest-charcoal night with a glowing ember. */
+  --background: oklch(0.19 0.012 150);
+  --foreground: oklch(0.92 0.012 82);
+  --card: oklch(0.23 0.014 150);
+  --card-foreground: oklch(0.92 0.012 82);
+  --popover: oklch(0.23 0.014 150);
+  --popover-foreground: oklch(0.92 0.012 82);
+  --primary: oklch(0.6 0.07 150); /* lifted sage / moss */
+  --primary-foreground: oklch(0.16 0.014 150);
+  --secondary: oklch(0.29 0.018 120);
+  --secondary-foreground: oklch(0.92 0.012 82);
+  --muted: oklch(0.27 0.015 140);
+  --muted-foreground: oklch(0.7 0.016 80);
+  --accent: oklch(0.63 0.15 48); /* glowing ember */
+  --accent-foreground: oklch(0.17 0.025 50);
+  --destructive: oklch(0.7 0.19 22);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.6 0.07 150);
+  --chart-1: oklch(0.6 0.07 150);
+  --chart-2: oklch(0.55 0.06 120);
+  --chart-3: oklch(0.63 0.15 48);
+  --chart-4: oklch(0.68 0.07 66);
+  --chart-5: oklch(0.4 0.05 150);
+  --sidebar: oklch(0.23 0.014 150);
+  --sidebar-foreground: oklch(0.92 0.012 82);
+  --sidebar-primary: oklch(0.6 0.07 150);
+  --sidebar-primary-foreground: oklch(0.16 0.014 150);
+  --sidebar-accent: oklch(0.29 0.018 120);
+  --sidebar-accent-foreground: oklch(0.92 0.012 82);
+  --sidebar-border: oklch(1 0 0 / 12%);
+  --sidebar-ring: oklch(0.6 0.07 150);
 }
 
 @layer base {
@@ -143,16 +143,41 @@
     font-family: var(--font-display), var(--font-sans), sans-serif;
     font-weight: 600;
   }
-  /* Section kicker: uppercase, tracked, ember-coloured label above headings. */
+  /* Section kicker: uppercase, tracked, ember label with a field-guide rule. */
   .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
     font-family: var(--font-display), var(--font-sans), sans-serif;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     font-weight: 600;
     font-size: 0.8125rem;
     line-height: 1;
     color: var(--accent);
   }
+  .eyebrow::before {
+    content: "";
+    width: 1.75rem;
+    height: 2px;
+    background: currentColor;
+  }
+}
+
+/* Tactile film-grain overlay — gives surfaces an analog, natural texture
+   instead of a flat digital finish. Non-interactive and subtle. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.dark body::after {
+  opacity: 0.08;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -12,7 +12,7 @@ export function Application() {
         <Reveal>
           <div className="mx-auto max-w-2xl text-center">
             <p className="eyebrow">Apply now</p>
-            <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+            <h2 className="mt-3 font-heading text-3xl font-bold uppercase tracking-tight text-balance sm:text-4xl">
               {applicationIntro.heading}
             </h2>
             <p className="mx-auto mt-4 text-lg text-muted-foreground text-balance">

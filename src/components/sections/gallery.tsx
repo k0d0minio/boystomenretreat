@@ -16,7 +16,7 @@ export function Gallery() {
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="eyebrow">On the coast</p>
-          <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+          <h2 className="mt-3 font-heading text-3xl font-bold uppercase tracking-tight text-balance sm:text-4xl">
             {gallery.heading}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-balance">{gallery.subheading}</p>
@@ -35,7 +35,7 @@ export function Gallery() {
                   toneClasses[tile.tone],
                 )}
               >
-                <Camera className="absolute right-3 top-3 size-5 text-white/60 transition-transform duration-300 group-hover:scale-110" />
+                <Camera className="absolute right-3 top-3 size-5 text-white/60" />
                 <span className="relative text-sm font-semibold text-white drop-shadow-sm">{tile.label}</span>
               </div>
             </Reveal>

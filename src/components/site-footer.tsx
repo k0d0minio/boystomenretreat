@@ -8,7 +8,7 @@ export function SiteFooter() {
     <footer className="border-t border-border bg-muted/40">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
-          <Link href="/" className="flex items-center gap-2 font-heading text-lg font-bold tracking-tight">
+          <Link href="/" className="flex items-center gap-2 font-heading text-lg font-bold uppercase tracking-wide">
             <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
               <Waves className="size-4" />
             </span>

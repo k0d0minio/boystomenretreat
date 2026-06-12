@@ -14,7 +14,7 @@ export function Pricing() {
             <div className="grid gap-8 p-8 sm:p-12 lg:grid-cols-2 lg:gap-12">
               <div>
                 <p className="eyebrow">Reserve your week</p>
-                <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+                <h2 className="mt-3 font-heading text-3xl font-bold uppercase tracking-tight text-balance sm:text-4xl">
                   {pricing.heading}
                 </h2>
                 <div className="mt-6 flex items-baseline gap-2">

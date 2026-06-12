@@ -8,7 +8,7 @@ export function Team() {
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="eyebrow">The people</p>
-          <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+          <h2 className="mt-3 font-heading text-3xl font-bold uppercase tracking-tight text-balance sm:text-4xl">
             {team.heading}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground text-balance">{team.subheading}</p>
@@ -19,7 +19,7 @@ export function Team() {
             <Reveal key={member.name} delay={i * 0.08}>
               <Card className="h-full border-border/70">
                 <CardContent className="flex h-full flex-col p-6">
-                  <span className="flex size-14 items-center justify-center rounded-full bg-primary font-heading text-lg font-bold text-primary-foreground">
+                  <span className="flex size-14 items-center justify-center rounded-md bg-primary font-heading text-lg font-bold text-primary-foreground">
                     {member.initials}
                   </span>
                   <h3 className="mt-4 font-heading text-xl font-semibold">{member.name}</h3>
