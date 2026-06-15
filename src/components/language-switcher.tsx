@@ -5,6 +5,13 @@ import { Globe } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   hasLocale,
   localeNames,
   locales,
@@ -13,8 +20,10 @@ import {
 
 /**
  * Language switcher — swaps the leading `/[lang]` segment of the current path
- * and navigates, preserving the rest of the path and any anchor. A native
- * `<select>` keeps it fully keyboard- and screen-reader accessible.
+ * and navigates, preserving the rest of the path and any anchor. Built on the
+ * shadcn Select so it matches the rest of the UI and stays fully keyboard- and
+ * screen-reader accessible. The trigger shows a compact locale code; the menu
+ * lists the native language names.
  */
 export function LanguageSwitcher({
   lang,
@@ -40,25 +49,25 @@ export function LanguageSwitcher({
   }
 
   return (
-    <div
-      className={cn(
-        "relative inline-flex items-center gap-1.5 rounded-md px-2 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
-        className,
-      )}
-    >
-      <Globe className="size-4" aria-hidden />
-      <select
-        value={lang}
-        onChange={(e) => switchTo(e.target.value)}
-        aria-label={label}
-        className="cursor-pointer appearance-none bg-transparent pr-1 outline-none focus-visible:ring-2 focus-visible:ring-ring"
+    <Select value={lang} onValueChange={switchTo}>
+      <SelectTrigger
+        size="sm"
+        aria-label={`${label}: ${localeNames[lang]}`}
+        className={cn(
+          "gap-1.5 border-0 bg-transparent px-2 font-medium text-muted-foreground shadow-none transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-2 data-[state=open]:bg-muted data-[state=open]:text-foreground",
+          className,
+        )}
       >
+        <Globe className="size-4" aria-hidden />
+        <SelectValue>{lang.toUpperCase()}</SelectValue>
+      </SelectTrigger>
+      <SelectContent align="end">
         {locales.map((l) => (
-          <option key={l} value={l} className="text-foreground">
+          <SelectItem key={l} value={l}>
             {localeNames[l]}
-          </option>
+          </SelectItem>
         ))}
-      </select>
-    </div>
+      </SelectContent>
+    </Select>
   );
 }
