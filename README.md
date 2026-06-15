@@ -38,7 +38,7 @@ npm run lint     # eslint
 | `src/app/page.tsx` | Home page — composes the landing sections |
 | `src/app/about/page.tsx` | Founder's story |
 | `src/app/privacy/page.tsx` | Privacy policy |
-| `src/components/sections/*` | Landing page sections (hero, why, included, schedule, etc.) |
+| `src/components/sections/*` | Landing page sections (hero, why, included, etc.) |
 | `src/components/site-header.tsx` / `site-footer.tsx` | Shared nav & footer |
 | `src/components/motion/reveal.tsx` | Reusable scroll-reveal animation wrapper |
 | `src/components/ui/*` | shadcn/ui primitives |

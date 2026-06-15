@@ -15,13 +15,19 @@ export function Why() {
             </h2>
             <p className="mt-5 text-xl font-medium text-foreground text-balance">{why.lead}</p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              {why.ageGroups.map((group) => (
-                <div key={group.range} className="rounded-xl border border-border bg-background px-5 py-3">
-                  <div className="font-heading text-2xl font-bold text-primary">{group.range}</div>
-                  <div className="text-sm text-muted-foreground">{group.label}</div>
-                </div>
-              ))}
+            <div className="mt-8">
+              <p className="eyebrow">{why.ageGroupsHeading}</p>
+              <div className="mt-3 flex flex-wrap gap-3">
+                {why.ageGroups.map((group) => (
+                  <div key={group.range} className="rounded-xl border border-border bg-background px-5 py-3">
+                    <div className="font-heading text-2xl font-bold text-primary">{group.range}</div>
+                    <div className="text-sm text-muted-foreground">{group.label}</div>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 text-sm leading-relaxed text-muted-foreground text-balance">
+                {why.ageGroupsNote}
+              </p>
             </div>
 
             <div className="relative mt-8 aspect-4/5 overflow-hidden rounded-2xl border border-border bg-muted">

@@ -19,7 +19,6 @@ export const nav = [
   { label: "About", href: "/about" },
   { label: "Why", href: "/#why" },
   { label: "Included", href: "/#included" },
-  { label: "Schedule", href: "/#schedule" },
   { label: "Team", href: "/#team" },
   { label: "Apply", href: "/#apply" },
   { label: "Contact", href: "/#contact" },
@@ -47,6 +46,9 @@ export const why = {
     "Most boys don't need another lecture. They need challenge. They need guidance. They need strong male role models. And they need to feel part of something real.",
     "This experience is designed to help boys reconnect to who they are — rather than conforming to external expectations.",
   ],
+  ageGroupsHeading: "Two age ranges",
+  ageGroupsNote:
+    "Nine to sixteen is a wide span, so in practice the boys are grouped into two age ranges. Challenges, coaching and conversations are pitched to suit where each group is at.",
   ageGroups: [
     { range: "9 – 13", label: "Younger group" },
     { range: "13 – 16", label: "Older group" },
@@ -112,21 +114,6 @@ export const included = {
       description: "We capture photos and videos for the boys to take back home.",
       emoji: "📸",
     },
-  ],
-};
-
-export const schedule = {
-  heading: "A day at the retreat",
-  subheading: "A rhythm of movement, challenge, connection and reflection.",
-  items: [
-    { time: "Morning", title: "Wake up & morning movement", description: "Start the day with intention and a clear head." },
-    { time: "Morning", title: "Workout", description: "Build strength, discipline and energy together." },
-    { time: "Morning", title: "Breakfast together", description: "Fuel up and share the plan for the day." },
-    { time: "Midday", title: "Surf & skate lesson", description: "Coaching in the water and on the board." },
-    { time: "Afternoon", title: "Beach challenges & games", description: "Team races, obstacles and coordination tasks." },
-    { time: "Evening", title: "Cook & eat dinner together", description: "Shared responsibility and connection over food." },
-    { time: "Evening", title: "Silent walk & journaling", description: "Time to reflect on the day in their own words." },
-    { time: "Night", title: "Bonfire circle", description: "Stories, values and laughter around the fire." },
   ],
 };
 
