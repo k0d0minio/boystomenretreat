@@ -169,6 +169,7 @@ export const pt: Dictionary = {
     heading: "Pronto para dar o próximo passo?",
     subheading: "Contacte-nos com qualquer questão ou para reservar um lugar. As datas são flexíveis — ajudamo-lo a encontrar a semana certa.",
     whatsappLabel: "Mensagem no WhatsApp",
+    languageNote: "O retiro decorre em inglês. O Max também fala alemão, neerlandês e espanhol, por isso fale connosco no idioma que preferir.",
   },
 
   footer: {

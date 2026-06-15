@@ -169,6 +169,7 @@ export const nl: Dictionary = {
     heading: "Klaar voor de volgende stap?",
     subheading: "Neem contact op met al je vragen of om een plek te reserveren. De data zijn flexibel — we helpen je de juiste week te vinden.",
     whatsappLabel: "Bericht op WhatsApp",
+    languageNote: "De retraite wordt in het Engels gehouden. Max spreekt ook Duits, Nederlands en Spaans, dus neem gerust contact op in de taal die jou het beste uitkomt.",
   },
 
   footer: {

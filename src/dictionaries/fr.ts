@@ -169,6 +169,7 @@ export const fr: Dictionary = {
     heading: "Prêt à franchir le pas ?",
     subheading: "Contactez-nous pour toute question ou pour réserver une place. Les dates sont flexibles — nous vous aiderons à trouver la bonne semaine.",
     whatsappLabel: "Message sur WhatsApp",
+    languageNote: "La retraite se déroule en anglais. Max parle aussi allemand, néerlandais et espagnol, alors n'hésitez pas à nous contacter dans la langue qui vous convient le mieux.",
   },
 
   footer: {
