@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Quote } from "lucide-react";
 
@@ -17,16 +18,31 @@ export default function AboutPage() {
     <article>
       <section className="relative overflow-hidden border-b border-border">
         <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-secondary/60 to-background" />
-        <div className="mx-auto max-w-3xl px-4 pb-12 pt-20 sm:px-6 sm:pb-16 sm:pt-28">
-          <Reveal>
-            <p className="text-sm font-semibold uppercase tracking-wider text-primary">About</p>
-            <h1 className="mt-3 font-heading text-4xl font-extrabold tracking-tight text-balance sm:text-5xl">
-              {about.heading}
-            </h1>
-            <p className="mt-6 text-xl leading-relaxed text-muted-foreground text-balance">
-              {about.intro}
-            </p>
-          </Reveal>
+        <div className="mx-auto max-w-5xl px-4 pb-12 pt-20 sm:px-6 sm:pb-16 sm:pt-28">
+          <div className="grid items-center gap-10 md:grid-cols-[1.4fr_1fr]">
+            <Reveal>
+              <p className="text-sm font-semibold uppercase tracking-wider text-primary">About</p>
+              <h1 className="mt-3 font-heading text-4xl font-extrabold tracking-tight text-balance sm:text-5xl">
+                {about.heading}
+              </h1>
+              <p className="mt-6 text-xl leading-relaxed text-muted-foreground text-balance">
+                {about.intro}
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.1} className="mx-auto w-full max-w-xs md:max-w-none">
+              <div className="relative aspect-4/5 overflow-hidden rounded-2xl bg-muted shadow-sm ring-1 ring-foreground/10">
+                <Image
+                  src="/img/max-richter.jpg"
+                  alt="Maxim Rettich, founder of Boys To Men Retreat, smiling outdoors in a cap"
+                  fill
+                  priority
+                  sizes="(min-width: 768px) 33vw, 80vw"
+                  className="object-cover object-top"
+                />
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 

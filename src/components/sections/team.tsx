@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Reveal } from "@/components/motion/reveal";
 import { Card, CardContent } from "@/components/ui/card";
 import { team } from "@/lib/content";
@@ -16,12 +18,30 @@ export function Team() {
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {team.members.map((member, i) => (
             <Reveal key={member.name} delay={i * 0.08}>
-              <Card className="h-full border-border/70">
-                <CardContent className="flex h-full flex-col p-6">
-                  <span className="flex size-14 items-center justify-center rounded-full bg-primary font-heading text-lg font-bold text-primary-foreground">
-                    {member.initials}
-                  </span>
-                  <h3 className="mt-4 font-heading text-xl font-semibold">{member.name}</h3>
+              <Card className="h-full overflow-hidden border-border/70 pt-0">
+                {member.kind === "logo" ? (
+                  <div className="relative aspect-square bg-secondary/40">
+                    <Image
+                      src={member.image}
+                      alt={member.imageAlt}
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      className="object-contain p-10"
+                    />
+                  </div>
+                ) : (
+                  <div className="relative aspect-square bg-muted">
+                    <Image
+                      src={member.image}
+                      alt={member.imageAlt}
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      className="object-cover object-top"
+                    />
+                  </div>
+                )}
+                <CardContent className="flex flex-col p-6">
+                  <h3 className="font-heading text-xl font-semibold">{member.name}</h3>
                   <p className="text-sm font-medium text-primary">{member.role}</p>
                   <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{member.bio}</p>
                 </CardContent>

@@ -1,14 +1,8 @@
-import { Camera } from "lucide-react";
+import Image from "next/image";
 
 import { Reveal } from "@/components/motion/reveal";
 import { cn } from "@/lib/utils";
 import { gallery } from "@/lib/content";
-
-const toneClasses: Record<string, string> = {
-  ocean: "from-primary/80 to-primary/40",
-  sand: "from-accent/80 to-accent/40",
-  deep: "from-primary to-chart-5/80",
-};
 
 export function Gallery() {
   return (
@@ -21,28 +15,32 @@ export function Gallery() {
           <p className="mt-4 text-lg text-muted-foreground text-balance">{gallery.subheading}</p>
         </Reveal>
 
-        <div className="mt-14 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
-          {gallery.tiles.map((tile, i) => (
-            <Reveal
-              key={tile.label}
-              delay={(i % 4) * 0.06}
-              className={cn(i % 5 === 0 ? "col-span-2 row-span-2" : "")}
-            >
-              <div
-                className={cn(
-                  "group relative flex h-full min-h-40 items-end overflow-hidden rounded-2xl bg-gradient-to-br p-4 sm:min-h-48",
-                  toneClasses[tile.tone],
-                )}
+        <div className="mt-14 grid auto-rows-[11rem] grid-cols-2 gap-3 sm:auto-rows-[13rem] sm:gap-4 md:grid-cols-4">
+          {gallery.tiles.map((tile, i) => {
+            const feature = i % 5 === 0;
+            return (
+              <Reveal
+                key={tile.src}
+                delay={(i % 4) * 0.06}
+                className={cn(feature ? "col-span-2 row-span-2" : "")}
               >
-                <Camera className="absolute right-3 top-3 size-5 text-white/60 transition-transform duration-300 group-hover:scale-110" />
-                <span className="relative text-sm font-semibold text-white drop-shadow-sm">{tile.label}</span>
-              </div>
-            </Reveal>
-          ))}
+                <div className="group relative h-full w-full overflow-hidden rounded-2xl bg-muted">
+                  <Image
+                    src={tile.src}
+                    alt={tile.alt}
+                    fill
+                    sizes={feature ? "(min-width: 768px) 50vw, 100vw" : "(min-width: 768px) 25vw, 50vw"}
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0" />
+                  <span className="absolute bottom-3 left-3 right-3 text-sm font-semibold text-white drop-shadow-sm">
+                    {tile.label}
+                  </span>
+                </div>
+              </Reveal>
+            );
+          })}
         </div>
-        <p className="mt-6 text-center text-xs text-muted-foreground">
-          Photography placeholders — real retreat imagery to be added.
-        </p>
       </div>
     </section>
   );

@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Reveal } from "@/components/motion/reveal";
 import { why } from "@/lib/content";
 
@@ -20,6 +22,16 @@ export function Why() {
                   <div className="text-sm text-muted-foreground">{group.label}</div>
                 </div>
               ))}
+            </div>
+
+            <div className="relative mt-8 aspect-4/5 overflow-hidden rounded-2xl bg-muted">
+              <Image
+                src="/img/coach-and-boys-group-portrait.jpg"
+                alt="A coach standing with five boys holding their skateboards at the skatepark"
+                fill
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover"
+              />
             </div>
           </Reveal>
 

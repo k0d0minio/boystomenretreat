@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight, MapPin, Sparkles } from "lucide-react";
@@ -20,18 +21,24 @@ export function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden">
-      {/* Ambient ocean gradient backdrop */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-b from-secondary/60 via-background to-background" />
-        <div className="absolute -top-40 left-1/2 size-[42rem] -translate-x-1/2 rounded-full bg-primary/15 blur-3xl" />
-        <div className="absolute right-[-10%] top-20 size-80 rounded-full bg-accent/30 blur-3xl" />
-      </div>
+    <section className="relative isolate flex min-h-[90svh] items-center overflow-hidden">
+      {/* Full-bleed hero photograph */}
+      <Image
+        src="/img/surfer-sunset-peace-sign.jpeg"
+        alt="A surfer sits on their board at sunset, throwing a peace sign as the sun dips into the ocean"
+        fill
+        priority
+        sizes="100vw"
+        className="-z-20 object-cover object-center"
+      />
+      {/* Legibility scrims: darken overall, deepen the bottom, and add a top scrim behind the header */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/45 to-black/55" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-black/60 to-transparent" />
 
-      <div className="mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pb-28 sm:pt-24">
+      <div className="mx-auto w-full max-w-6xl px-4 pb-20 pt-28 sm:px-6 sm:pb-28 sm:pt-32">
         <motion.div variants={container} initial="hidden" animate="visible" className="mx-auto max-w-3xl text-center">
           <motion.div variants={item} className="flex justify-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-accent/50 bg-accent/20 px-4 py-1.5 text-sm font-medium text-accent-foreground">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
               <Sparkles className="size-4" />
               {hero.badge}
             </span>
@@ -39,16 +46,16 @@ export function Hero() {
 
           <motion.h1
             variants={item}
-            className="mt-6 font-heading text-4xl font-extrabold tracking-tight text-balance sm:text-6xl"
+            className="mt-6 font-heading text-4xl font-extrabold tracking-tight text-balance text-white drop-shadow-sm sm:text-6xl"
           >
             {hero.title}
           </motion.h1>
 
-          <motion.p variants={item} className="mx-auto mt-5 max-w-2xl text-lg text-muted-foreground text-balance sm:text-xl">
+          <motion.p variants={item} className="mx-auto mt-5 max-w-2xl text-lg text-white/85 text-balance sm:text-xl">
             {hero.subtitle}
           </motion.p>
 
-          <motion.div variants={item} className="mt-4 flex items-center justify-center gap-1.5 text-sm text-muted-foreground">
+          <motion.div variants={item} className="mt-4 flex items-center justify-center gap-1.5 text-sm text-white/75">
             <MapPin className="size-4" />
             {site.location}
           </motion.div>
@@ -60,7 +67,12 @@ export function Hero() {
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="w-full border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white sm:w-auto"
+            >
               <Link href={hero.secondaryCta.href}>{hero.secondaryCta.label}</Link>
             </Button>
           </motion.div>
@@ -76,10 +88,10 @@ export function Hero() {
             <motion.div
               key={stat.value + stat.label}
               variants={item}
-              className="rounded-xl border border-border bg-card/70 p-4 text-center backdrop-blur-sm"
+              className="rounded-xl border border-white/20 bg-white/10 p-4 text-center backdrop-blur-md"
             >
-              <dt className="font-heading text-2xl font-bold text-primary">{stat.value}</dt>
-              <dd className="mt-1 text-sm text-muted-foreground">{stat.label}</dd>
+              <dt className="font-heading text-2xl font-bold text-white">{stat.value}</dt>
+              <dd className="mt-1 text-sm text-white/75">{stat.label}</dd>
             </motion.div>
           ))}
         </motion.dl>

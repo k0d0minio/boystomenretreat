@@ -133,17 +133,17 @@ export const schedule = {
 export const gallery = {
   heading: "Moments from the retreat",
   subheading: "Surf, skate, sand and brotherhood on the coast of Ericeira.",
-  // Placeholder tiles until brand photography is supplied.
   tiles: [
-    { label: "Surfing the pointbreak", tone: "ocean" },
-    { label: "Skate sessions", tone: "sand" },
-    { label: "Beach challenges", tone: "ocean" },
-    { label: "Cold plunge", tone: "deep" },
-    { label: "Campfire circle", tone: "sand" },
-    { label: "Morning movement", tone: "ocean" },
-    { label: "Cooking together", tone: "deep" },
-    { label: "Brotherhood", tone: "sand" },
-  ] as { label: string; tone: "ocean" | "sand" | "deep" }[],
+    { src: "/img/skateboarder-air-bowl.jpg", label: "Catching air", alt: "A boy catches air on his skateboard above the bowl at the skatepark" },
+    { src: "/img/boy-skateboarding-skatepark.jpg", label: "Skate sessions", alt: "A boy in helmet and pads popping a trick at the skatepark" },
+    { src: "/img/coach-teaching-skatepark-ramp.jpg", label: "Coaching on the ramp", alt: "A coach guiding a boy dropping into the ramp while others watch" },
+    { src: "/img/coach-high-five-skatepark.jpg", label: "Small wins, big high-fives", alt: "A coach high-fiving a smiling boy at the skatepark" },
+    { src: "/img/kids-group-beach.jpg", label: "Brotherhood", alt: "Four boys carrying a friend together on the beach" },
+    { src: "/img/boy-hiking-coastal-trail.jpg", label: "Coastal adventures", alt: "A boy hiking up a sandy coastal trail through green hills" },
+    { src: "/img/boy-sandbag-beach-fitness.jpg", label: "Beach challenges", alt: "A boy carrying a heavy sandbag during a beach fitness challenge" },
+    { src: "/img/boy-playing-beach-sand.jpg", label: "Play & sand", alt: "A boy playing and digging in the sand on the beach" },
+    { src: "/img/boy-holding-longboard.jpg", label: "Ready to roll", alt: "A boy in skate pads smiling while holding a colourful longboard" },
+  ],
 };
 
 export const pricing = {
@@ -173,18 +173,27 @@ export const team = {
       role: "Founder & Host",
       bio: "54 years old and Dutch by birth, fluent in English and Spanish, and a certified breathwork facilitator. A father of two — a 9-year-old son and a 13-year-old daughter — based in Ericeira, Portugal. His life journey has taken him across the world, shaped by a deep passion for sports, personal growth and the pursuit of something more meaningful.",
       initials: "MR",
+      kind: "photo" as const,
+      image: "/img/max-richter.jpg",
+      imageAlt: "Maxim Rettich, founder of Boys To Men Retreat, smiling outdoors in a cap",
     },
     {
       name: "Rafa",
       role: "Skateschool 36 Ericeira — Coach",
       bio: "Years of skateboarding experience. \"I love helping people build confidence on their boards, learn new skills, and most importantly, have fun.\"",
       initials: "R",
+      kind: "photo" as const,
+      image: "/img/rafa.jpg",
+      imageAlt: "Rafa, skate coach, riding the edge of a bowl on his skateboard",
     },
     {
       name: "Blue Ocean Surf School",
       role: "Surf instruction — Ribeira d'Ilhas",
       bio: "Our school has taught thousands of students, and today we can assess and address bad techniques so students can improve and move forward in their surfing journey.",
       initials: "BO",
+      kind: "logo" as const,
+      image: "/img/blue-ocean.png",
+      imageAlt: "Blue Ocean Ericeira Surf School logo",
     },
   ],
 };
