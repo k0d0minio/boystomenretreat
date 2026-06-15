@@ -2,33 +2,43 @@ import Link from "next/link";
 import { AtSign, MessageCircle, Phone } from "lucide-react";
 
 import { BrandMark } from "@/components/brand-logo";
-import { site } from "@/lib/content";
+import { site } from "@/lib/site";
+import { withLocale, type Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/dictionaries/en";
 
-export function SiteFooter() {
+export function SiteFooter({
+  lang,
+  footer,
+  tagline,
+}: {
+  lang: Locale;
+  footer: Dictionary["footer"];
+  tagline: string;
+}) {
   return (
     <footer className="border-t border-border bg-muted/40">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
-          <Link href="/" className="flex items-center gap-3 font-heading text-lg font-bold uppercase tracking-wide">
+          <Link href={withLocale(lang, "/")} className="flex items-center gap-3 font-heading text-lg font-bold uppercase tracking-wide">
             <BrandMark className="size-14" />
             {site.shortName}
           </Link>
-          <p className="mt-3 max-w-xs text-sm text-muted-foreground">{site.tagline}</p>
+          <p className="mt-3 max-w-xs text-sm text-muted-foreground">{tagline}</p>
           <p className="mt-3 text-sm text-muted-foreground">{site.location}</p>
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold">Explore</h3>
+          <h3 className="text-sm font-semibold">{footer.explore}</h3>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
-            <li><Link href="/" className="hover:text-foreground">Home</Link></li>
-            <li><Link href="/about" className="hover:text-foreground">About the founder</Link></li>
-            <li><Link href="/#included" className="hover:text-foreground">What&apos;s included</Link></li>
-            <li><Link href="/privacy" className="hover:text-foreground">Privacy Policy</Link></li>
+            <li><Link href={withLocale(lang, "/")} className="hover:text-foreground">{footer.home}</Link></li>
+            <li><Link href={withLocale(lang, "/about")} className="hover:text-foreground">{footer.aboutFounder}</Link></li>
+            <li><Link href={withLocale(lang, "/#included")} className="hover:text-foreground">{footer.included}</Link></li>
+            <li><Link href={withLocale(lang, "/privacy")} className="hover:text-foreground">{footer.privacy}</Link></li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold">Get in touch</h3>
+          <h3 className="text-sm font-semibold">{footer.getInTouch}</h3>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
             <li>
               <a href={site.whatsapp} className="flex items-center gap-2 hover:text-foreground" target="_blank" rel="noopener noreferrer">
@@ -37,7 +47,7 @@ export function SiteFooter() {
             </li>
             <li>
               <a href={`tel:${site.phone}`} className="flex items-center gap-2 hover:text-foreground">
-                <Phone className="size-4" /> {site.phone}
+                <Phone className="size-4" /> {site.phoneDisplay}
               </a>
             </li>
             <li>

@@ -1,13 +1,13 @@
 import { Reveal } from "@/components/motion/reveal";
 import { Card, CardContent } from "@/components/ui/card";
-import { included } from "@/lib/content";
+import type { Dictionary } from "@/dictionaries/en";
 
-export function Included() {
+export function Included({ dict: included }: { dict: Dictionary["included"] }) {
   return (
     <section id="included" className="scroll-mt-20 border-t border-border">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow">The experience</p>
+          <p className="eyebrow">{included.eyebrow}</p>
           <h2 className="mt-3 font-heading text-3xl font-bold uppercase tracking-tight text-balance sm:text-4xl">
             {included.heading}
           </h2>

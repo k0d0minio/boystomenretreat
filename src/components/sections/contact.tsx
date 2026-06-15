@@ -2,14 +2,15 @@ import { AtSign, MessageCircle, Phone } from "lucide-react";
 
 import { Reveal } from "@/components/motion/reveal";
 import { Button } from "@/components/ui/button";
-import { contact, site } from "@/lib/content";
+import { site } from "@/lib/site";
+import type { Dictionary } from "@/dictionaries/en";
 
-export function Contact() {
+export function Contact({ dict: contact }: { dict: Dictionary["contact"] }) {
   return (
     <section id="contact" className="scroll-mt-20 border-t border-border">
       <div className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 sm:py-28">
         <Reveal>
-          <p className="eyebrow">Get in touch</p>
+          <p className="eyebrow">{contact.eyebrow}</p>
           <h2 className="mt-3 font-heading text-3xl font-bold uppercase tracking-tight text-balance sm:text-4xl">
             {contact.heading}
           </h2>
@@ -27,13 +28,13 @@ export function Contact() {
             <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
               <a href={`tel:${site.phone}`}>
                 <Phone className="size-4" />
-                {contact.phoneLabel}
+                {site.phoneDisplay}
               </a>
             </Button>
             <Button asChild size="lg" variant="ghost" className="w-full sm:w-auto">
               <a href={site.instagram} target="_blank" rel="noopener noreferrer">
                 <AtSign className="size-4" />
-                {contact.instagramLabel}
+                {site.instagramHandle}
               </a>
             </Button>
           </div>

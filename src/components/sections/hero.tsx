@@ -6,9 +6,17 @@ import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight, CalendarDays, MapPin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { hero, site } from "@/lib/content";
+import { site } from "@/lib/site";
+import { withLocale, type Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/dictionaries/en";
 
-export function Hero() {
+export function Hero({
+  lang,
+  dict: hero,
+}: {
+  lang: Locale;
+  dict: Dictionary["hero"];
+}) {
   const reduceMotion = useReducedMotion();
 
   const container = {
@@ -62,7 +70,7 @@ export function Hero() {
 
           <motion.div variants={item} className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button asChild size="lg" variant="accent" className="w-full sm:w-auto">
-              <Link href={hero.primaryCta.href}>
+              <Link href={withLocale(lang, hero.primaryCta.href)}>
                 {hero.primaryCta.label}
                 <ArrowRight className="size-4" />
               </Link>
@@ -73,7 +81,7 @@ export function Hero() {
               size="lg"
               className="w-full border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white sm:w-auto"
             >
-              <Link href={hero.secondaryCta.href}>{hero.secondaryCta.label}</Link>
+              <Link href={withLocale(lang, hero.secondaryCta.href)}>{hero.secondaryCta.label}</Link>
             </Button>
           </motion.div>
         </motion.div>
