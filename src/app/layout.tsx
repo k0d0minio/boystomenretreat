@@ -1,7 +1,17 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Oswald } from "next/font/google";
 import "./globals.css";
 
+import { brand } from "@/lib/brand";
+import { site } from "@/lib/content";
+import { JsonLd } from "@/components/json-ld";
+import {
+  SITE_TITLE,
+  buildMetadata,
+  organizationLd,
+  siteUrl,
+  websiteLd,
+} from "@/lib/seo";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -18,13 +28,15 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.boystomenretreat.com"),
+  metadataBase: new URL(siteUrl),
+  // Site-wide complete openGraph/twitter/canonical + the home defaults.
+  ...buildMetadata({ path: "/" }),
+  // Title template applies to every nested page title.
   title: {
-    default: "Boys To Men Retreat — Ericeira, Portugal",
-    template: "%s | Boys To Men Retreat",
+    default: SITE_TITLE,
+    template: `%s | ${site.shortName} Retreat`,
   },
-  description:
-    "A 4 day / 4 night retreat in Ericeira, Portugal guiding young men (9–16) through challenge, adventure and self-discovery — surfing, skateboarding, beach challenges, cold plunges and campfire circles.",
+  applicationName: site.name,
   keywords: [
     "boys retreat",
     "rite of passage",
@@ -34,14 +46,35 @@ export const metadata: Metadata = {
     "young men",
     "adventure retreat",
   ],
-  openGraph: {
-    title: "Boys To Men Retreat — Ericeira, Portugal",
-    description:
-      "Guiding young men through challenge, adventure and self-discovery in Ericeira, Portugal.",
-    type: "website",
-    locale: "en",
-    // Share image is generated from the brand mark by app/opengraph-image.tsx.
+  authors: [{ name: site.name, url: siteUrl }],
+  creator: site.name,
+  publisher: site.name,
+  category: "travel",
+  formatDetection: { telephone: true, email: true, address: false },
+  appleWebApp: {
+    capable: true,
+    title: site.shortName,
+    statusBarStyle: "default",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+};
+
+export const viewport: Viewport = {
+  colorScheme: "light dark",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: brand.forest },
+    { media: "(prefers-color-scheme: dark)", color: brand.night },
+  ],
 };
 
 export default function RootLayout({
@@ -56,6 +89,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${oswald.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <JsonLd data={[organizationLd(), websiteLd()]} />
         <ThemeProvider>
           <SiteHeader />
           <main className="flex-1">{children}</main>

@@ -1,11 +1,11 @@
-import type { Metadata } from "next";
-
 import { privacy } from "@/lib/content";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "Privacy Policy",
   description: "How Boys To Men Retreat handles the information you share with us.",
-};
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (

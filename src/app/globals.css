@@ -63,7 +63,7 @@
   --secondary: oklch(0.87 0.03 72); /* clay / tan */
   --secondary-foreground: oklch(0.33 0.04 60);
   --muted: oklch(0.91 0.016 76); /* muted sand */
-  --muted-foreground: oklch(0.46 0.022 68); /* stone grey-brown */
+  --muted-foreground: oklch(0.42 0.024 68); /* stone grey-brown — darkened for legible nav/secondary text */
   --accent: oklch(0.57 0.14 45); /* weathered ember / terracotta */
   --accent-foreground: oklch(0.97 0.012 85);
   --destructive: oklch(0.55 0.2 27);

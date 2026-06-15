@@ -1,3 +1,5 @@
+import { JsonLd } from "@/components/json-ld";
+import { retreatProductLd } from "@/lib/seo";
 import { Hero } from "@/components/sections/hero";
 import { Why } from "@/components/sections/why";
 import { Outcomes } from "@/components/sections/outcomes";
@@ -11,6 +13,7 @@ import { Contact } from "@/components/sections/contact";
 export default function Home() {
   return (
     <>
+      <JsonLd data={retreatProductLd()} />
       <Hero />
       <Why />
       <Outcomes />

@@ -1,21 +1,24 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Quote } from "lucide-react";
 
+import { JsonLd } from "@/components/json-ld";
 import { Reveal } from "@/components/motion/reveal";
 import { Button } from "@/components/ui/button";
 import { about } from "@/lib/content";
+import { buildMetadata, personLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = buildMetadata({
   title: "About the founder",
   description:
     "A message from Maxim Rettich, founder of Boys To Men Retreat — his story, his values, and the intention behind the retreat.",
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
     <article>
+      <JsonLd data={personLd()} />
       <section className="relative overflow-hidden border-b border-border">
         <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-secondary/60 to-background" />
         <div className="mx-auto max-w-5xl px-4 pb-12 pt-20 sm:px-6 sm:pb-16 sm:pt-28">
