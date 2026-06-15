@@ -7,7 +7,7 @@ import { site } from "@/lib/site";
 import { defaultLocale, hasLocale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 
-// Social / Open Graph share card. The brand mark on the campfire-night
+// Social / Open Graph share card. The brand mark on the deep-sea night
 // background, with the wordmark and a localized tagline + location.
 export const alt = `${site.name} — ${site.location}`;
 export const size = { width: 1200, height: 630 };
@@ -32,8 +32,8 @@ export default async function OpengraphImage({
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: brand.night,
-          color: brand.oatmeal,
+          background: brand.abyss,
+          color: brand.seafoam,
           fontFamily: "Oswald",
           fontWeight: 700,
         }}
@@ -43,7 +43,7 @@ export default async function OpengraphImage({
         <svg width={300} height={92} viewBox="11 29 26 8" fill="none" style={{ marginTop: -8 }}>
           <path
             d={WAVE_PATH}
-            stroke={brand.ember}
+            stroke={brand.coral}
             strokeWidth={2}
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -66,7 +66,7 @@ export default async function OpengraphImage({
             fontSize: 30,
             letterSpacing: 8,
             textTransform: "uppercase",
-            color: "rgba(245, 243, 240, 0.7)",
+            color: "rgba(237, 243, 245, 0.7)",
           }}
         >
           {`${dict.og.homeTagline} — ${site.location}`}

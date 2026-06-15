@@ -12,8 +12,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: en.meta.tagline,
     start_url: `/${defaultLocale}`,
     display: "standalone",
-    background_color: brand.oatmeal,
-    theme_color: brand.forest,
+    background_color: brand.seafoam,
+    theme_color: brand.ocean,
     icons: [
       { src: "/icon", sizes: "32x32", type: "image/png" },
       { src: "/apple-icon", sizes: "180x180", type: "image/png" },
