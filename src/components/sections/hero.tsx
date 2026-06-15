@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
-import { ArrowRight, MapPin, Sparkles } from "lucide-react";
+import { ArrowRight, CalendarDays, MapPin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { hero, site } from "@/lib/content";
@@ -21,7 +21,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative isolate flex min-h-[90svh] items-center overflow-hidden">
+    <section className="relative isolate flex min-h-[90svh] items-center overflow-hidden border-b border-border">
       {/* Full-bleed hero photograph */}
       <Image
         src="/img/surfer-sunset-peace-sign.jpeg"
@@ -38,15 +38,15 @@ export function Hero() {
       <div className="mx-auto w-full max-w-6xl px-4 pb-20 pt-28 sm:px-6 sm:pb-28 sm:pt-32">
         <motion.div variants={container} initial="hidden" animate="visible" className="mx-auto max-w-3xl text-center">
           <motion.div variants={item} className="flex justify-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
-              <Sparkles className="size-4" />
+            <span className="inline-flex items-center gap-2 rounded-sm border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white backdrop-blur-sm">
+              <CalendarDays className="size-3.5" />
               {hero.badge}
             </span>
           </motion.div>
 
           <motion.h1
             variants={item}
-            className="mt-6 font-heading text-4xl font-extrabold tracking-tight text-balance text-white drop-shadow-sm sm:text-6xl"
+            className="mt-6 font-heading text-4xl font-extrabold uppercase tracking-tight text-balance text-white drop-shadow-sm sm:text-6xl"
           >
             {hero.title}
           </motion.h1>
@@ -61,7 +61,7 @@ export function Hero() {
           </motion.div>
 
           <motion.div variants={item} className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild size="lg" className="w-full sm:w-auto">
+            <Button asChild size="lg" variant="accent" className="w-full sm:w-auto">
               <Link href={hero.primaryCta.href}>
                 {hero.primaryCta.label}
                 <ArrowRight className="size-4" />

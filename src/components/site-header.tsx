@@ -15,6 +15,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 import { nav, site } from "@/lib/content";
 
@@ -39,7 +40,7 @@ export function SiteHeader() {
       className={cn(
         "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? "border-b border-border/60 bg-background/80 backdrop-blur-md"
+          ? "border-b border-border bg-background"
           : "border-b border-transparent bg-transparent",
       )}
     >
@@ -47,7 +48,7 @@ export function SiteHeader() {
         <Link
           href="/"
           className={cn(
-            "flex items-center gap-2 font-heading text-lg font-bold tracking-tight",
+            "flex items-center gap-2 font-heading text-lg font-bold uppercase tracking-wide",
             onDark ? "text-white" : "text-foreground",
           )}
         >
@@ -82,17 +83,27 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Button
-            asChild
-            size="sm"
-            variant={onDark ? "outline" : "default"}
-            className={cn("ml-2", onDark && "border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white")}
-          >
-            <Link href="/#contact">Book a place</Link>
-          </Button>
+          <ThemeToggle
+            className={cn("ml-1", onDark && "text-white hover:bg-white/10 hover:text-white")}
+          />
+          {onDark ? (
+            <Button
+              asChild
+              size="sm"
+              variant="outline"
+              className="ml-1 border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
+            >
+              <Link href="/#contact">Book a place</Link>
+            </Button>
+          ) : (
+            <Button asChild variant="accent" size="sm" className="ml-1">
+              <Link href="/#contact">Book a place</Link>
+            </Button>
+          )}
         </nav>
 
-        <div className="md:hidden">
+        <div className="flex items-center gap-1 md:hidden">
+          <ThemeToggle className={cn(onDark && "text-white hover:bg-white/10 hover:text-white")} />
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button
@@ -106,7 +117,7 @@ export function SiteHeader() {
             </SheetTrigger>
             <SheetContent side="right" className="w-72">
               <SheetHeader>
-                <SheetTitle className="flex items-center gap-2 font-heading">
+                <SheetTitle className="flex items-center gap-2 font-heading uppercase tracking-wide">
                   <Image
                     src="/img/boys-to-men-logo.jpg"
                     alt="Boys To Men Surf Skate Retreat logo"
@@ -129,7 +140,7 @@ export function SiteHeader() {
                   </SheetClose>
                 ))}
                 <SheetClose asChild>
-                  <Button asChild className="mt-3">
+                  <Button asChild variant="accent" className="mt-3">
                     <Link href="/#contact">Book a place</Link>
                   </Button>
                 </SheetClose>

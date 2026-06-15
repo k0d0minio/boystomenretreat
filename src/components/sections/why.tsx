@@ -9,8 +9,8 @@ export function Why() {
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
           <Reveal>
-            <p className="text-sm font-semibold uppercase tracking-wider text-primary">The mission</p>
-            <h2 className="mt-3 font-heading text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+            <p className="eyebrow">The mission</p>
+            <h2 className="mt-3 font-heading text-3xl font-bold uppercase tracking-tight text-balance sm:text-4xl">
               {why.heading}
             </h2>
             <p className="mt-5 text-xl font-medium text-foreground text-balance">{why.lead}</p>
@@ -24,7 +24,7 @@ export function Why() {
               ))}
             </div>
 
-            <div className="relative mt-8 aspect-4/5 overflow-hidden rounded-2xl bg-muted">
+            <div className="relative mt-8 aspect-4/5 overflow-hidden rounded-2xl border border-border bg-muted">
               <Image
                 src="/img/coach-and-boys-group-portrait.jpg"
                 alt="A coach standing with five boys holding their skateboards at the skatepark"

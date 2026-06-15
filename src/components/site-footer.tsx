@@ -9,7 +9,7 @@ export function SiteFooter() {
     <footer className="border-t border-border bg-muted/40">
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
-          <Link href="/" className="flex items-center gap-3 font-heading text-lg font-bold tracking-tight">
+          <Link href="/" className="flex items-center gap-3 font-heading text-lg font-bold uppercase tracking-wide">
             <Image
               src="/img/boys-to-men-logo.jpg"
               alt="Boys To Men Surf Skate Retreat logo"
