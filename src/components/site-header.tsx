@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Menu } from "lucide-react";
 
 import { BrandMark } from "@/components/brand-logo";
@@ -16,41 +15,20 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { cn } from "@/lib/utils";
 import { nav, site } from "@/lib/content";
 
 export function SiteHeader() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-  const isHome = pathname === "/";
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Transparent header sits over the dark hero photo only on the homepage at the top.
-  const onDark = isHome && !scrolled;
-
+  // The header is always solid so its text uses the theme foreground colour —
+  // consistently dark in light mode (and light in dark mode), always legible.
+  // (Previously it was transparent over the hero with white text at the top.)
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300",
-        scrolled
-          ? "border-b border-border bg-background"
-          : "border-b border-transparent bg-transparent",
-      )}
-    >
+    <header className="sticky top-0 z-50 w-full border-b border-border bg-background">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
           href="/"
-          className={cn(
-            "flex items-center gap-2 font-heading text-lg font-bold uppercase tracking-wide",
-            onDark ? "text-white" : "text-foreground",
-          )}
+          className="flex items-center gap-2 font-heading text-lg font-bold uppercase tracking-wide text-foreground"
         >
           <BrandMark className="size-9" />
           <span>{site.shortName}</span>
@@ -61,45 +39,22 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className={cn(
-                "rounded-md px-3 py-2 text-sm font-medium transition-colors",
-                onDark
-                  ? "text-white/80 hover:bg-white/10 hover:text-white"
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground",
-              )}
+              className="rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               {item.label}
             </Link>
           ))}
-          <ThemeToggle
-            className={cn("ml-1", onDark && "text-white hover:bg-white/10 hover:text-white")}
-          />
-          {onDark ? (
-            <Button
-              asChild
-              size="sm"
-              variant="outline"
-              className="ml-1 border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
-            >
-              <Link href="/#contact">Book a place</Link>
-            </Button>
-          ) : (
-            <Button asChild variant="accent" size="sm" className="ml-1">
-              <Link href="/#contact">Book a place</Link>
-            </Button>
-          )}
+          <ThemeToggle className="ml-1" />
+          <Button asChild variant="accent" size="sm" className="ml-1">
+            <Link href="/#contact">Book a place</Link>
+          </Button>
         </nav>
 
         <div className="flex items-center gap-1 md:hidden">
-          <ThemeToggle className={cn(onDark && "text-white hover:bg-white/10 hover:text-white")} />
+          <ThemeToggle />
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                aria-label="Open menu"
-                className={cn(onDark && "text-white hover:bg-white/10 hover:text-white")}
-              >
+              <Button variant="ghost" size="icon" aria-label="Open menu">
                 <Menu className="size-5" />
               </Button>
             </SheetTrigger>
