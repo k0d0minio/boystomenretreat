@@ -2,14 +2,14 @@ import Image from "next/image";
 
 import { Reveal } from "@/components/motion/reveal";
 import { cn } from "@/lib/utils";
-import { gallery } from "@/lib/content";
+import type { Dictionary } from "@/dictionaries/en";
 
-export function Gallery() {
+export function Gallery({ dict: gallery }: { dict: Dictionary["gallery"] }) {
   return (
     <section className="scroll-mt-20 border-t border-border bg-card">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow">On the coast</p>
+          <p className="eyebrow">{gallery.eyebrow}</p>
           <h2 className="mt-3 font-heading text-3xl font-bold uppercase tracking-tight text-balance sm:text-4xl">
             {gallery.heading}
           </h2>

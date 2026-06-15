@@ -3,15 +3,18 @@
  *
  * Server-only. Turns a submitted answers object into a labeled notification
  * email and delivers it to the team inbox (`SYSTEM_RECIPIENT`) via Resend.
- * Field labels are pulled from the shared `steps` definition so the email
- * stays in sync with the form and renders fields in the order they're asked.
+ * Field labels are pulled from the English dictionary's step definitions so the
+ * team inbox always reads in one language (English) and stays in form order,
+ * regardless of the locale the applicant used.
  *
  * This module reads server-only secrets and is imported only by the route
  * handler — never include it in a client component.
  */
 import { Resend } from "resend";
 
-import { steps } from "@/lib/application-form";
+import { en } from "@/dictionaries/en";
+
+const steps = en.application.steps;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

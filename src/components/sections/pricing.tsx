@@ -3,9 +3,16 @@ import { Check } from "lucide-react";
 
 import { Reveal } from "@/components/motion/reveal";
 import { Button } from "@/components/ui/button";
-import { pricing } from "@/lib/content";
+import { withLocale, type Locale } from "@/lib/i18n/config";
+import type { Dictionary } from "@/dictionaries/en";
 
-export function Pricing() {
+export function Pricing({
+  lang,
+  dict: pricing,
+}: {
+  lang: Locale;
+  dict: Dictionary["pricing"];
+}) {
   return (
     <section className="scroll-mt-20 border-t border-border">
       <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28">
@@ -13,7 +20,7 @@ export function Pricing() {
           <div className="overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary to-chart-5 text-primary-foreground">
             <div className="grid gap-8 p-8 sm:p-12 lg:grid-cols-2 lg:gap-12">
               <div>
-                <p className="eyebrow">Reserve your week</p>
+                <p className="eyebrow">{pricing.eyebrow}</p>
                 <h2 className="mt-3 font-heading text-3xl font-bold uppercase tracking-tight text-balance sm:text-4xl">
                   {pricing.heading}
                 </h2>
@@ -23,7 +30,7 @@ export function Pricing() {
                 </div>
                 <p className="mt-4 max-w-sm text-primary-foreground/80">{pricing.note}</p>
                 <Button asChild size="lg" variant="accent" className="mt-8">
-                  <Link href={pricing.cta.href}>{pricing.cta.label}</Link>
+                  <Link href={withLocale(lang, pricing.cta.href)}>{pricing.cta.label}</Link>
                 </Button>
               </div>
 

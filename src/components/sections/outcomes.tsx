@@ -2,14 +2,14 @@ import { CheckCircle2 } from "lucide-react";
 
 import { Reveal } from "@/components/motion/reveal";
 import { Card, CardContent } from "@/components/ui/card";
-import { outcomes } from "@/lib/content";
+import type { Dictionary } from "@/dictionaries/en";
 
-export function Outcomes() {
+export function Outcomes({ dict: outcomes }: { dict: Dictionary["outcomes"] }) {
   return (
     <section className="scroll-mt-20 border-t border-border">
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow">The outcomes</p>
+          <p className="eyebrow">{outcomes.eyebrow}</p>
           <h2 className="mt-3 font-heading text-3xl font-bold uppercase tracking-tight text-balance sm:text-4xl">
             {outcomes.heading}
           </h2>

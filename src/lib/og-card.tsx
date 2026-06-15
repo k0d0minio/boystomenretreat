@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 import { WAVE_PATH, brand } from "@/lib/brand";
-import { site } from "@/lib/content";
+import { site } from "@/lib/site";
 import { siteUrl } from "@/lib/seo";
 
 /** Standard 1.91:1 social card dimensions, shared by every share image. */

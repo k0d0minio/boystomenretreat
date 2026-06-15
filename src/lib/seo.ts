@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 
-import { about, pricing, site } from "@/lib/content";
+import { site } from "@/lib/site";
+import {
+  defaultLocale,
+  locales,
+  ogLocale,
+  type Locale,
+} from "@/lib/i18n/config";
+import type { Dictionary } from "@/dictionaries/en";
 
 /**
  * Canonical site origin. Prefer an explicit env override, then the Vercel
@@ -14,48 +21,63 @@ export const siteUrl = (
     : "https://www.boystomenretreat.com")
 ).replace(/\/$/, "");
 
-/** Site-wide default title (also the home <title> and OG title). */
+/** Site-wide default title (brand + location — identical across locales). */
 export const SITE_TITLE = `${site.name} — ${site.location}`;
 
-/** Site-wide default description, reused for OG/Twitter when a page omits one. */
-export const SITE_DESCRIPTION =
-  "A 4 day / 4 night retreat in Ericeira, Portugal guiding young men (9–16) through challenge, adventure and self-discovery — surfing, skateboarding, beach challenges, cold plunges and campfire circles.";
+/** Prefix a locale-relative path with its locale, e.g. `/about` → `/nl/about`. */
+function localePath(lang: Locale, path: string): string {
+  return `/${lang}${path === "/" ? "" : path}`;
+}
 
 type BuildMetadataArgs = {
-  /** Page title (templated by the root layout). Omit on the home page. */
+  /** Active locale. */
+  lang: Locale;
+  /** Active dictionary (used for the fallback description). */
+  dict: Dictionary;
+  /** Page title — already localized by the caller. Omit on the home page. */
   title?: string;
-  /** Page description; falls back to {@link SITE_DESCRIPTION}. */
+  /** Page description; falls back to the locale's site description. */
   description?: string;
-  /** Route path, e.g. "/about". Used for the canonical + OG url. */
+  /** Locale-relative route path, e.g. "/about". Used for canonical + OG url. */
   path: string;
 };
 
 /**
- * Build a complete, consistent Metadata object for a route.
+ * Build a complete, consistent Metadata object for a localized route.
  *
  * Next merges `openGraph`/`twitter` as whole-object replacement across segments
- * (not a deep merge), so every page must emit a *complete* object or it loses
- * `siteName`/`locale`/`type`. This helper guarantees that. The actual share
- * image tags are supplied automatically by each segment's `opengraph-image` /
- * `twitter-image` files, so we deliberately do not set `openGraph.images` here.
+ * (not a deep merge), so every page must emit a *complete* object. This helper
+ * guarantees that, sets the locale-aware canonical, the `hreflang` alternates
+ * for every supported language, and the correct `og:locale`. The share image
+ * tags themselves come from each segment's `opengraph-image` / `twitter-image`.
  */
 export function buildMetadata({
+  lang,
+  dict,
   title,
   description,
   path,
 }: BuildMetadataArgs): Metadata {
-  const desc = description ?? SITE_DESCRIPTION;
+  const desc = description ?? dict.seo.siteDescription;
   const shareTitle = title ? `${title} | ${site.name}` : SITE_TITLE;
+
+  const languages: Record<string, string> = Object.fromEntries(
+    locales.map((l) => [l, localePath(l, path)]),
+  );
+  languages["x-default"] = localePath(defaultLocale, path);
 
   return {
     ...(title ? { title } : {}),
     description: desc,
-    alternates: { canonical: path },
+    alternates: {
+      canonical: localePath(lang, path),
+      languages,
+    },
     openGraph: {
       type: "website",
       siteName: site.name,
-      locale: "en_US",
-      url: path,
+      locale: ogLocale[lang],
+      url: localePath(lang, path),
       title: shareTitle,
       description: desc,
     },
@@ -73,7 +95,7 @@ export function buildMetadata({
 
 const ORG_ID = `${siteUrl}/#organization`;
 
-export function organizationLd() {
+export function organizationLd(dict: Dictionary) {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -82,13 +104,13 @@ export function organizationLd() {
     alternateName: site.shortName,
     url: siteUrl,
     logo: `${siteUrl}/apple-icon`,
-    description: site.tagline,
+    description: dict.meta.tagline,
     sameAs: [site.instagram],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: site.phone,
       contactType: "customer service",
-      availableLanguage: ["English", "Spanish"],
+      availableLanguage: ["English", "Dutch", "Portuguese", "French", "Spanish"],
     },
     address: {
       "@type": "PostalAddress",
@@ -98,47 +120,46 @@ export function organizationLd() {
   };
 }
 
-export function websiteLd() {
+export function websiteLd(lang: Locale) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": `${siteUrl}/#website`,
     name: site.name,
-    url: siteUrl,
-    inLanguage: "en",
+    url: `${siteUrl}/${lang}`,
+    inLanguage: lang,
     publisher: { "@id": ORG_ID },
   };
 }
 
-export function retreatProductLd() {
+export function retreatProductLd(dict: Dictionary, lang: Locale) {
   return {
     "@context": "https://schema.org",
     "@type": "Product",
     name: site.name,
-    description: SITE_DESCRIPTION,
-    image: `${siteUrl}/opengraph-image`,
+    description: dict.seo.siteDescription,
+    image: `${siteUrl}/${lang}/opengraph-image`,
     brand: { "@type": "Brand", name: site.name },
     offers: {
       "@type": "Offer",
       price: "700",
       priceCurrency: "EUR",
       availability: "https://schema.org/InStock",
-      url: `${siteUrl}/#contact`,
-      category: pricing.duration,
+      url: `${siteUrl}/${lang}#contact`,
+      category: dict.pricing.duration,
     },
   };
 }
 
-export function personLd() {
-  const founder = about;
+export function personLd(dict: Dictionary, lang: Locale) {
   return {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Maxim Rettich",
-    jobTitle: "Founder & Host",
-    description: founder.intro,
+    jobTitle: dict.team.members[0]?.role ?? "Founder & Host",
+    description: dict.about.intro,
     image: `${siteUrl}/img/max-richter.jpg`,
     worksFor: { "@id": ORG_ID },
-    url: `${siteUrl}/about`,
+    url: `${siteUrl}/${lang}/about`,
   };
 }

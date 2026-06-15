@@ -34,11 +34,15 @@ npm run lint     # eslint
 
 | Path | Purpose |
 | --- | --- |
-| `src/lib/content.ts` | Single source of truth for all site copy & data |
-| `src/app/page.tsx` | Home page — composes the landing sections |
-| `src/app/about/page.tsx` | Founder's story |
-| `src/app/privacy/page.tsx` | Privacy policy |
+| `src/dictionaries/{en,nl,pt,fr,es}.ts` | Per-locale site copy. `en.ts` is the canonical shape; the others are typed against it |
+| `src/lib/site.ts` | Locale-invariant data (brand name, phone, socials) |
+| `src/lib/i18n/` | Locale config (`config.ts`) + server-only dictionary loader (`dictionaries.ts`) |
+| `src/proxy.ts` | Locale detection & redirect (Next.js 16 Proxy / Middleware) |
+| `src/app/[lang]/page.tsx` | Home page — composes the landing sections |
+| `src/app/[lang]/about/page.tsx` | Founder's story |
+| `src/app/[lang]/privacy/page.tsx` | Privacy policy |
 | `src/components/sections/*` | Landing page sections (hero, why, included, etc.) |
+| `src/components/language-switcher.tsx` | Header language dropdown |
 | `src/components/site-header.tsx` / `site-footer.tsx` | Shared nav & footer |
 | `src/components/motion/reveal.tsx` | Reusable scroll-reveal animation wrapper |
 | `src/components/ui/*` | shadcn/ui primitives |
@@ -49,4 +53,11 @@ npm run lint     # eslint
   retreat imagery in and swap the placeholders in `src/components/sections/gallery.tsx`.
 - **Brand**: colors live as CSS variables in `src/app/globals.css` (an ocean/sand
   placeholder palette) and the display font is set in `src/app/layout.tsx`.
-- **Content**: edit `src/lib/content.ts` to update any copy in one place.
+- **Content & translations**: copy lives in `src/dictionaries/<locale>.ts`. Edit
+  `en.ts` first (it's the canonical shape — TypeScript will flag any other locale
+  that's missing a key), then update the matching string in `nl/pt/fr/es.ts`.
+  The NL/PT/FR/ES translations are machine-assisted — have a native speaker /
+  lawyer review them (especially the application form's legal screens and the
+  privacy policy) before relying on them in production.
+- **Languages**: configured in `src/lib/i18n/config.ts`. URLs are locale-prefixed
+  (`/en`, `/nl`, …); `/` redirects to the visitor's browser language.

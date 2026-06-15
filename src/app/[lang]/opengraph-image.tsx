@@ -3,15 +3,23 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 import { WAVE_PATH, brand } from "@/lib/brand";
-import { site } from "@/lib/content";
+import { site } from "@/lib/site";
+import { defaultLocale, hasLocale } from "@/lib/i18n/config";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 
-// Social / Open Graph share card. The new brand mark on the campfire-night background,
-// with the wordmark and location — replaces the stock surfer photo as the share image.
+// Social / Open Graph share card. The brand mark on the campfire-night
+// background, with the wordmark and a localized tagline + location.
 export const alt = `${site.name} — ${site.location}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-export default async function OpengraphImage() {
+export default async function OpengraphImage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  const dict = await getDictionary(hasLocale(lang) ? lang : defaultLocale);
   const oswald = await readFile(join(process.cwd(), "assets/Oswald-Bold.woff"));
 
   return new ImageResponse(
@@ -61,7 +69,7 @@ export default async function OpengraphImage() {
             color: "rgba(245, 243, 240, 0.7)",
           }}
         >
-          {`Surf · Skate Retreat — ${site.location}`}
+          {`${dict.og.homeTagline} — ${site.location}`}
         </div>
       </div>
     ),
