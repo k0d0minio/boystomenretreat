@@ -168,6 +168,7 @@ export const en = {
     heading: "Ready to take the next step?",
     subheading: "Reach out with any questions or to reserve a place. Dates are flexible — we'll help you find the right week.",
     whatsappLabel: "Message on WhatsApp",
+    languageNote: "The retreat is held in English. Max also speaks German, Dutch and Spanish, so feel free to get in touch in whichever language suits you best.",
   },
 
   footer: {

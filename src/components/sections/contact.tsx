@@ -38,6 +38,10 @@ export function Contact({ dict: contact }: { dict: Dictionary["contact"] }) {
               </a>
             </Button>
           </div>
+
+          <p className="mx-auto mt-8 max-w-xl text-sm text-muted-foreground text-balance">
+            {contact.languageNote}
+          </p>
         </Reveal>
       </div>
     </section>
