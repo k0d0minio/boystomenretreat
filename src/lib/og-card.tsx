@@ -13,7 +13,7 @@ export const OG_CONTENT_TYPE = "image/png";
 const displayDomain = siteUrl.replace(/^https?:\/\//, "");
 
 type ShareCardArgs = {
-  /** Small ember eyebrow above the title, e.g. "ABOUT". */
+  /** Small coral eyebrow above the title, e.g. "ABOUT". */
   eyebrow: string;
   /** Large headline (rendered uppercase). */
   title: string;
@@ -23,7 +23,7 @@ type ShareCardArgs = {
 
 /**
  * Title-forward interior-page share card, matching the home brand card
- * (BTM monogram + wave on the night background) but leading with the page
+ * (BTM monogram + wave on the deep-sea background) but leading with the page
  * title. Flexbox only (Satori), concrete brand hexes (no oklch), single
  * Oswald weight (the only vendored face).
  */
@@ -44,13 +44,13 @@ export async function renderShareCard({
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 80,
-          background: brand.night,
-          color: brand.oatmeal,
+          background: brand.abyss,
+          color: brand.seafoam,
           fontFamily: "Oswald",
           fontWeight: 700,
         }}
       >
-        {/* Brand mark: small monogram + ember wave underline */}
+        {/* Brand mark: small monogram + coral wave underline */}
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ fontSize: 44, letterSpacing: 6, lineHeight: 1 }}>
             BTM
@@ -64,7 +64,7 @@ export async function renderShareCard({
           >
             <path
               d={WAVE_PATH}
-              stroke={brand.ember}
+              stroke={brand.coral}
               strokeWidth={2}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -79,7 +79,7 @@ export async function renderShareCard({
               fontSize: 30,
               letterSpacing: 10,
               textTransform: "uppercase",
-              color: brand.ember,
+              color: brand.coral,
             }}
           >
             {eyebrow}
@@ -101,7 +101,7 @@ export async function renderShareCard({
                 marginTop: 24,
                 fontSize: 34,
                 lineHeight: 1.25,
-                color: "rgba(245, 243, 240, 0.72)",
+                color: "rgba(237, 243, 245, 0.72)",
               }}
             >
               {subtitle}
@@ -118,7 +118,7 @@ export async function renderShareCard({
             fontSize: 26,
             letterSpacing: 4,
             textTransform: "uppercase",
-            color: "rgba(245, 243, 240, 0.7)",
+            color: "rgba(237, 243, 245, 0.7)",
           }}
         >
           <span>{displayDomain}</span>

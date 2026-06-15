@@ -19,9 +19,9 @@ export const WAVE_PATH = "M13 33 q2.75 -3 5.5 0 t5.5 0 t5.5 0";
 
 /** Brand palette (approx. hex of the OKLCH tokens in globals.css), for raster images. */
 export const brand = {
-  forest: "#4A6B4D", // weathered forest green — primary
-  oatmeal: "#F5F3F0", // warm cream — light surfaces / glyphs on dark
-  charcoal: "#3E3530", // deep warm charcoal — text on light
-  ember: "#C2703F", // weathered ember / terracotta — accent
-  night: "#1C2E1F", // deep forest-charcoal — dark backgrounds
+  ocean: "#22607E", // deep Atlantic blue — primary
+  seafoam: "#EDF3F5", // pale sea mist / foam — light surfaces / glyphs on dark
+  navy: "#1A2F3D", // deep navy — text on light
+  coral: "#E0734D", // warm coral — accent
+  abyss: "#0F2733", // deep sea navy — dark backgrounds
 } as const;

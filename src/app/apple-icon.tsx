@@ -4,8 +4,8 @@ import { join } from "node:path";
 
 import { WAVE_PATH, brand } from "@/lib/brand";
 
-// Apple touch icon (iOS home screen). The full monogram — letters + wave — on a
-// forest tile with generous padding, sized for the 180px home-screen slot.
+// Apple touch icon (iOS home screen). The full monogram — letters + wave — on an
+// ocean tile with generous padding, sized for the 180px home-screen slot.
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
@@ -22,8 +22,8 @@ export default async function AppleIcon() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: brand.forest,
-          color: brand.oatmeal,
+          background: brand.ocean,
+          color: brand.seafoam,
         }}
       >
         <div
@@ -46,7 +46,7 @@ export default async function AppleIcon() {
         >
           <path
             d={WAVE_PATH}
-            stroke={brand.oatmeal}
+            stroke={brand.seafoam}
             strokeWidth={2}
             strokeLinecap="round"
             strokeLinejoin="round"
