@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { AtSign, MessageCircle, Phone } from "lucide-react";
 
+import { BrandMark } from "@/components/brand-logo";
 import { site } from "@/lib/content";
 
 export function SiteFooter() {
@@ -10,13 +10,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div>
           <Link href="/" className="flex items-center gap-3 font-heading text-lg font-bold uppercase tracking-wide">
-            <Image
-              src="/img/boys-to-men-logo.jpg"
-              alt="Boys To Men Surf Skate Retreat logo"
-              width={56}
-              height={56}
-              className="size-14 rounded-xl object-cover"
-            />
+            <BrandMark className="size-14" />
             {site.shortName}
           </Link>
           <p className="mt-3 max-w-xs text-sm text-muted-foreground">{site.tagline}</p>

@@ -40,14 +40,7 @@ export const metadata: Metadata = {
       "Guiding young men through challenge, adventure and self-discovery in Ericeira, Portugal.",
     type: "website",
     locale: "en",
-    images: [
-      {
-        url: "/img/surfer-sunset-peace-sign.jpeg",
-        width: 1000,
-        height: 667,
-        alt: "A surfer at sunset throwing a peace sign off the coast of Ericeira",
-      },
-    ],
+    // Share image is generated from the brand mark by app/opengraph-image.tsx.
   },
 };
 

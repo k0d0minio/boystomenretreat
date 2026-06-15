@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Menu, Waves } from "lucide-react";
+import { Menu } from "lucide-react";
 
+import { BrandMark } from "@/components/brand-logo";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -52,19 +52,7 @@ export function SiteHeader() {
             onDark ? "text-white" : "text-foreground",
           )}
         >
-          {onDark ? (
-            <span className="flex size-8 items-center justify-center rounded-lg bg-white/15 text-white backdrop-blur-sm">
-              <Waves className="size-4" />
-            </span>
-          ) : (
-            <Image
-              src="/img/boys-to-men-logo.jpg"
-              alt="Boys To Men Surf Skate Retreat logo"
-              width={36}
-              height={36}
-              className="size-9 rounded-lg object-cover"
-            />
-          )}
+          <BrandMark className="size-9" />
           <span>{site.shortName}</span>
         </Link>
 
@@ -118,13 +106,7 @@ export function SiteHeader() {
             <SheetContent side="right" className="w-72">
               <SheetHeader>
                 <SheetTitle className="flex items-center gap-2 font-heading uppercase tracking-wide">
-                  <Image
-                    src="/img/boys-to-men-logo.jpg"
-                    alt="Boys To Men Surf Skate Retreat logo"
-                    width={28}
-                    height={28}
-                    className="size-7 rounded-lg object-cover"
-                  />
+                  <BrandMark className="size-7" />
                   {site.shortName}
                 </SheetTitle>
               </SheetHeader>

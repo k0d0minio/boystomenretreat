@@ -54,6 +54,8 @@ export function ApplicationForm() {
   const [answers, setAnswers] = useState<Answers>({});
   const [error, setError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const step = steps[index];
   const isLast = index === steps.length - 1;
@@ -71,14 +73,29 @@ export function ApplicationForm() {
     setIndex((i) => Math.max(0, i - 1));
   }, []);
 
-  const handleSubmit = useCallback(() => {
-    // No backend yet — log the collected answers so the form is fully
-    // operational and ready to be wired to an endpoint later.
-    console.info("Boys To Men application submitted", answers);
-    setSubmitted(true);
+  const handleSubmit = useCallback(async () => {
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch("/api/application", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(answers),
+      });
+      if (!res.ok) throw new Error(`Request failed with status ${res.status}`);
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Application submission failed", err);
+      setSubmitError(
+        "Something went wrong sending your application. Please try again, or call Maxim on +34 600 235 207.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }, [answers]);
 
   const goNext = useCallback(() => {
+    if (submitting) return; // ignore input while a submission is in flight
     const message = validate(step, answers);
     if (message) {
       setError(message);
@@ -89,13 +106,13 @@ export function ApplicationForm() {
       setAnswers((prev) => ({ ...prev, [step.id]: "Acknowledged" }));
     }
     if (isLast) {
-      handleSubmit();
+      void handleSubmit();
       return;
     }
     setError(null);
     setDirection(1);
     setIndex((i) => Math.min(steps.length - 1, i + 1));
-  }, [step, answers, isLast, handleSubmit]);
+  }, [step, answers, isLast, handleSubmit, submitting]);
 
   // Focus the first field whenever the step changes.
   useEffect(() => {
@@ -193,6 +210,8 @@ export function ApplicationForm() {
                 index={index}
                 answers={answers}
                 error={error}
+                submitError={submitError}
+                submitting={submitting}
                 fieldRef={firstFieldRef}
                 onChange={setAnswer}
                 onNext={goNext}
@@ -235,6 +254,8 @@ type StepBodyProps = {
   index: number;
   answers: Answers;
   error: string | null;
+  submitError: string | null;
+  submitting: boolean;
   fieldRef: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>;
   onChange: (id: string, value: string) => void;
   onNext: () => void;
@@ -246,6 +267,8 @@ function StepBody({
   index,
   answers,
   error,
+  submitError,
+  submitting,
   fieldRef,
   onChange,
   onNext,
@@ -295,6 +318,7 @@ function StepBody({
 
   // question
   const number = countableNumber(index);
+  const isLast = index === steps.length - 1;
   return (
     <div>
       <div className="flex items-baseline gap-2 text-primary">
@@ -320,17 +344,26 @@ function StepBody({
         />
       </div>
 
-      {error && <p className="mt-3 text-sm text-destructive">{error}</p>}
+      {(error || submitError) && (
+        <p className="mt-3 text-sm text-destructive">{error || submitError}</p>
+      )}
 
       {step.type !== "choice" && (
         <div className="mt-6 flex items-center gap-3">
-          <Button size="lg" onClick={onNext} className="px-5">
-            OK
+          <Button
+            size="lg"
+            onClick={onNext}
+            disabled={submitting}
+            className="px-5"
+          >
+            {submitting ? "Sending…" : isLast ? "Submit application" : "OK"}
           </Button>
-          <span className="hidden items-center gap-1 text-xs text-muted-foreground sm:flex">
-            press <kbd className="font-sans font-medium">Enter</kbd>
-            <CornerDownLeft className="size-3" />
-          </span>
+          {!submitting && (
+            <span className="hidden items-center gap-1 text-xs text-muted-foreground sm:flex">
+              press <kbd className="font-sans font-medium">Enter</kbd>
+              <CornerDownLeft className="size-3" />
+            </span>
+          )}
         </div>
       )}
     </div>
