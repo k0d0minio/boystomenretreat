@@ -2,12 +2,13 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-import { WAVE_PATH, brand } from "@/lib/brand";
+import { brand } from "@/lib/brand";
+import { brandLogoDataUri } from "@/lib/og-logo";
 import { site } from "@/lib/site";
 import { defaultLocale, hasLocale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 
-// Social / Open Graph share card. The brand mark on the deep-sea night
+// Social / Open Graph share card. The brand logo on the deep-sea night
 // background, with the wordmark and a localized tagline + location.
 export const alt = `${site.name} — ${site.location}`;
 export const size = { width: 1200, height: 630 };
@@ -21,6 +22,7 @@ export default async function OpengraphImage({
   const { lang } = await params;
   const dict = await getDictionary(hasLocale(lang) ? lang : defaultLocale);
   const oswald = await readFile(join(process.cwd(), "assets/Oswald-Bold.woff"));
+  const logo = await brandLogoDataUri(brand.seafoam);
 
   return new ImageResponse(
     (
@@ -38,21 +40,12 @@ export default async function OpengraphImage({
           fontWeight: 700,
         }}
       >
-        {/* Monogram */}
-        <div style={{ fontSize: 168, letterSpacing: 8, lineHeight: 1 }}>BTM</div>
-        <svg width={300} height={92} viewBox="11 29 26 8" fill="none" style={{ marginTop: -8 }}>
-          <path
-            d={WAVE_PATH}
-            stroke={brand.coral}
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        {/* Brand logo */}
+        <img src={logo} width={272} height={300} alt="" />
         {/* Wordmark */}
         <div
           style={{
-            marginTop: 44,
+            marginTop: 32,
             fontSize: 72,
             letterSpacing: 14,
             textTransform: "uppercase",

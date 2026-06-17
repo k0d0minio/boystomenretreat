@@ -1,21 +1,11 @@
 /**
- * Shared geometry + colors for the Boys To Men "BTM" monogram mark.
+ * Shared colors for the Boys To Men brand.
  *
- * The on-site mark ({@link "@/components/brand-logo".BrandMark}) draws everything in
- * `currentColor` so it adapts to light, dark and the hero overlay automatically.
- * The standalone metadata images (favicon / apple-icon / OG card) can't inherit a
- * theme, so they use the concrete brand hexes below — kept here so both stay in sync.
+ * The on-site mark ({@link "@/components/brand-logo".BrandMark}) renders the logo in
+ * `currentColor` so it adapts to light and dark automatically. The standalone metadata
+ * images (favicon / apple-icon / OG card) can't inherit a theme, so they recolour the
+ * logo to the concrete brand hexes below.
  */
-
-/** Square viewBox the monogram is authored against. */
-export const MARK_VIEWBOX = "0 0 48 48";
-
-/**
- * The breaking-wave underline beneath the letters — a 4-bump ripple from x13→x35,
- * centered on the 48-unit viewBox. Reused by the ImageResponse routes so the
- * generated icons match the on-site mark exactly.
- */
-export const WAVE_PATH = "M13 33 q2.75 -3 5.5 0 t5.5 0 t5.5 0";
 
 /** Brand palette (approx. hex of the OKLCH tokens in globals.css), for raster images. */
 export const brand = {

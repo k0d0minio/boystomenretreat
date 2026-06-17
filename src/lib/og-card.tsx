@@ -2,7 +2,8 @@ import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
-import { WAVE_PATH, brand } from "@/lib/brand";
+import { brand } from "@/lib/brand";
+import { brandLogoDataUri } from "@/lib/og-logo";
 import { site } from "@/lib/site";
 import { siteUrl } from "@/lib/seo";
 
@@ -23,9 +24,9 @@ type ShareCardArgs = {
 
 /**
  * Title-forward interior-page share card, matching the home brand card
- * (BTM monogram + wave on the deep-sea background) but leading with the page
- * title. Flexbox only (Satori), concrete brand hexes (no oklch), single
- * Oswald weight (the only vendored face).
+ * (brand logo on the deep-sea background) but leading with the page title.
+ * Flexbox only (Satori), concrete brand hexes (no oklch), single Oswald weight
+ * (the only vendored face).
  */
 export async function renderShareCard({
   eyebrow,
@@ -33,6 +34,7 @@ export async function renderShareCard({
   subtitle,
 }: ShareCardArgs) {
   const oswald = await readFile(join(process.cwd(), "assets/Oswald-Bold.woff"));
+  const logo = await brandLogoDataUri(brand.seafoam);
 
   return new ImageResponse(
     (
@@ -50,26 +52,10 @@ export async function renderShareCard({
           fontWeight: 700,
         }}
       >
-        {/* Brand mark: small monogram + coral wave underline */}
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ fontSize: 44, letterSpacing: 6, lineHeight: 1 }}>
-            BTM
-          </div>
-          <svg
-            width={130}
-            height={40}
-            viewBox="11 29 26 8"
-            fill="none"
-            style={{ marginTop: 4 }}
-          >
-            <path
-              d={WAVE_PATH}
-              stroke={brand.coral}
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+        {/* Brand logo */}
+        <div style={{ display: "flex" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={logo} width={109} height={120} alt="" />
         </div>
 
         {/* Eyebrow + title + optional subtitle */}
