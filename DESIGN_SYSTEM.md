@@ -14,9 +14,9 @@ circles on the Atlantic coast of Ericeira. The design should feel:
 - **Grounded & confident** — quiet authority, not hype.
 - **Reassuring to parents, adventurous to boys** — warm and trustworthy, with energy.
 
-The palette expresses this through **weathered forest-olive green**, **oatmeal / clay**, an
-**ember / terracotta** accent (campfire), and **stone & charcoal** text. Light mode reads as
-sun-bleached natural daylight; dark mode as forest dusk around the fire.
+The palette expresses this through **deep Atlantic blue**, **sea-mist & sand**, a warm
+**coral** accent (against the cool water), and **teal & navy** text. Light mode reads as
+bright coastal daylight; dark mode as the deep sea at night.
 
 The *tone* is reinforced by four deliberate choices, not colour alone:
 
@@ -36,18 +36,18 @@ the **semantic name** (e.g. `bg-primary`, `text-muted-foreground`), never a raw 
 
 | Token | Role | Light | Dark |
 | --- | --- | --- | --- |
-| `background` / `foreground` | Page base / body text | warm oatmeal / warm charcoal | deep forest-charcoal / warm oatmeal |
-| `card` / `card-foreground` | Raised surfaces (solid border, no shadow) | light cream / charcoal | lifted forest-charcoal / oatmeal |
-| `primary` / `primary-foreground` | Weathered forest green — primary brand, links, figures | forest green / cream | lifted sage-moss / near-black |
-| `accent` / `accent-foreground` | **Ember/terracotta — conversion CTAs, eyebrows, highlights** | weathered terracotta / cream | glowing ember / near-black |
-| `secondary` / `secondary-foreground` | Clay / tan — soft fills, emoji chips, badges | clay / deep brown | muted olive-gray / oatmeal |
-| `muted` / `muted-foreground` | Subtle fills / secondary text | muted sand / stone grey-brown | dark olive-gray / warm light gray |
-| `border` / `input` | Lines, dividers, fields (visible, earthy) | earthy sand border | translucent white 12–14% |
+| `background` / `foreground` | Page base / body text | pale sea mist / deep navy | Atlantic navy depths / pale seafoam |
+| `card` / `card-foreground` | Raised surfaces (solid border, no shadow) | light foam / navy | lifted navy / seafoam |
+| `primary` / `primary-foreground` | Deep Atlantic blue — primary brand, links, figures | ocean blue / foam | lifted aqua-cyan / near-black |
+| `accent` / `accent-foreground` | **Coral — conversion CTAs, eyebrows, highlights** | warm coral / foam | glowing coral / near-black |
+| `secondary` / `secondary-foreground` | Aqua / shallow water — soft fills, emoji chips, badges | soft aqua / deep teal | deep teal / seafoam |
+| `muted` / `muted-foreground` | Subtle fills / secondary text | pale tidal blue-grey / slate blue | deep sea-grey / warm light blue |
+| `border` / `input` | Lines, dividers, fields (visible, oceanic) | soft sea-glass border | translucent white 12–14% |
 | `ring` | Focus outline | = primary | = primary |
 | `destructive` | Errors | red | red |
-| `chart-1…5` | Decorative ramp (gallery tiles, gradients) | forest · olive · ember · clay-gold · deep-moss | same hues, dark-tuned |
+| `chart-1…5` | Decorative ramp (gallery tiles, gradients) | ocean · teal · coral · warm-sand · deep-navy | same hues, dark-tuned |
 
-**Accent discipline:** ember is the single attention colour. Use it for the **primary
+**Accent discipline:** coral is the single attention colour. Use it for the **primary
 conversion CTA** ("Book a place", "Reserve a place", "Join the next retreat") and section
 eyebrows. Don't spread it across body UI, or it stops meaning "act here".
 
@@ -68,7 +68,7 @@ exposed as CSS variables; the `@theme` block in `globals.css` maps `--font-headi
   utilities (`text-4xl font-bold tracking-tight`) on headings. **Major headings (`h1`/`h2`) and
   the brand wordmark are set `uppercase`** for the outdoor-signage feel; card titles (`h3`) stay
   sentence case for readability.
-- **`.eyebrow`** — uppercase, letter-spaced (`0.2em`), ember-coloured kicker label placed
+- **`.eyebrow`** — uppercase, letter-spaced (`0.2em`), coral-coloured kicker label placed
   above a section heading (e.g. *The mission*, *The experience*, *On the coast*). This is the
   signature rugged/editorial detail; every major section uses one.
 - **`.text-balance`** — balanced wrapping for headings and short paragraphs.
@@ -96,7 +96,7 @@ exposed as CSS variables; the `@theme` block in `globals.css` maps `--font-headi
 ## Components
 
 - **Buttons** ([`src/components/ui/button.tsx`](src/components/ui/button.tsx)) — variants:
-  `default` (navy), **`accent`** (ember, for conversion CTAs), `outline`, `secondary`,
+  `default` (ocean blue), **`accent`** (coral, for conversion CTAs), `outline`, `secondary`,
   `ghost`, `link`. Use `accent` for the one main action in a view; `default`/`outline` for
   everything else.
 - **Cards, badges, sheet, accordion, nav** — standard shadcn/ui primitives, fully token-driven;
@@ -113,4 +113,4 @@ exposed as CSS variables; the `@theme` block in `globals.css` maps `--font-headi
 2. **Add a colour role** — add the variable to both `:root`/`.dark` and map it in the `@theme`
    block so a Tailwind utility (`bg-…`) is generated.
 3. **New section** — follow the heading pattern above, reuse the `Reveal` motion wrapper and
-   the shadcn primitives, and reach for the ember accent only for the primary action.
+   the shadcn primitives, and reach for the coral accent only for the primary action.

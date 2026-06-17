@@ -6,7 +6,7 @@ import { ArrowDown, ArrowUp, Check, CornerDownLeft } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { steps, type QuestionStep, type Step } from "@/lib/application-form";
+import type { FormUi, QuestionStep, Step } from "@/lib/application-form";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const LETTERS = ["A", "B", "C", "D", "E", "F"];
@@ -14,29 +14,27 @@ const LETTERS = ["A", "B", "C", "D", "E", "F"];
 type Answers = Record<string, string>;
 
 /** Validate the active step. Returns an error message, or null when valid. */
-function validate(step: Step, answers: Answers): string | null {
+function validate(step: Step, answers: Answers, ui: FormUi): string | null {
   if (step.kind !== "question") return null;
   const value = (answers[step.id] ?? "").trim();
 
   if (!value) {
     if (step.required) {
-      return step.type === "choice"
-        ? "Please select an option."
-        : "Please fill this in.";
+      return step.type === "choice" ? ui.requiredChoice : ui.required;
     }
     return null; // optional + empty is fine
   }
 
   switch (step.type) {
     case "email":
-      return EMAIL_RE.test(value) ? null : "Please enter a valid email address.";
+      return EMAIL_RE.test(value) ? null : ui.invalidEmail;
     case "number": {
       const n = Number(value);
-      if (!Number.isFinite(n) || n <= 0) return "Please enter a valid age.";
+      if (!Number.isFinite(n) || n <= 0) return ui.invalidAge;
       return null;
     }
     case "date":
-      return isCompleteDate(value) ? null : "Please enter a complete date.";
+      return isCompleteDate(value) ? null : ui.invalidDate;
     default:
       return null;
   }
@@ -47,7 +45,7 @@ function isCompleteDate(value: string): boolean {
   return Boolean(m && d && y && y.length === 4);
 }
 
-export function ApplicationForm() {
+export function ApplicationForm({ steps, ui }: { steps: Step[]; ui: FormUi }) {
   const reduceMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -86,17 +84,15 @@ export function ApplicationForm() {
       setSubmitted(true);
     } catch (err) {
       console.error("Application submission failed", err);
-      setSubmitError(
-        "Something went wrong sending your application. Please try again, or call Maxim on +34 600 235 207.",
-      );
+      setSubmitError(ui.submitError);
     } finally {
       setSubmitting(false);
     }
-  }, [answers]);
+  }, [answers, ui.submitError]);
 
   const goNext = useCallback(() => {
     if (submitting) return; // ignore input while a submission is in flight
-    const message = validate(step, answers);
+    const message = validate(step, answers, ui);
     if (message) {
       setError(message);
       return;
@@ -112,7 +108,7 @@ export function ApplicationForm() {
     setError(null);
     setDirection(1);
     setIndex((i) => Math.min(steps.length - 1, i + 1));
-  }, [step, answers, isLast, handleSubmit, submitting]);
+  }, [step, answers, isLast, handleSubmit, submitting, ui, steps.length]);
 
   // Focus the first field whenever the step changes.
   useEffect(() => {
@@ -120,6 +116,17 @@ export function ApplicationForm() {
     const id = window.setTimeout(() => firstFieldRef.current?.focus(), 60);
     return () => window.clearTimeout(id);
   }, [index, submitted]);
+
+  const selectChoice = useCallback(
+    (q: QuestionStep, value: string) => {
+      setAnswer(q.id, value);
+      setDirection(1);
+      window.setTimeout(() => {
+        setIndex((i) => Math.min(steps.length - 1, i + 1));
+      }, 260);
+    },
+    [setAnswer, steps.length],
+  );
 
   // Letter-key shortcuts for choice questions (A, B, …).
   useEffect(() => {
@@ -133,16 +140,7 @@ export function ApplicationForm() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [step, submitted]);
-
-  function selectChoice(q: QuestionStep, value: string) {
-    setAnswer(q.id, value);
-    setDirection(1);
-    window.setTimeout(() => {
-      setIndex((i) => Math.min(steps.length - 1, i + 1));
-    }, 260);
-  }
+  }, [step, submitted, selectChoice]);
 
   const variants = useMemo(
     () => ({
@@ -188,11 +186,10 @@ export function ApplicationForm() {
                 <Check className="size-7" />
               </div>
               <h3 className="mt-6 font-heading text-2xl font-bold tracking-tight sm:text-3xl">
-                Thank you — your application is in.
+                {ui.successTitle}
               </h3>
               <p className="mt-3 max-w-md text-muted-foreground text-balance">
-                We&apos;ll review your details and be in touch soon. If
-                you&apos;d like to speak sooner, call Maxim on +34 600 235 207.
+                {ui.successBody}
               </p>
             </motion.div>
           ) : (
@@ -207,11 +204,14 @@ export function ApplicationForm() {
             >
               <StepBody
                 step={step}
+                steps={steps}
                 index={index}
+                isLast={isLast}
                 answers={answers}
                 error={error}
                 submitError={submitError}
                 submitting={submitting}
+                ui={ui}
                 fieldRef={firstFieldRef}
                 onChange={setAnswer}
                 onNext={goNext}
@@ -229,7 +229,7 @@ export function ApplicationForm() {
             type="button"
             onClick={goPrev}
             disabled={index === 0}
-            aria-label="Previous question"
+            aria-label={ui.prevQuestion}
             className="flex size-8 items-center justify-center bg-primary text-primary-foreground transition-colors hover:bg-primary/80 disabled:cursor-not-allowed disabled:opacity-40"
           >
             <ArrowUp className="size-4" />
@@ -238,7 +238,7 @@ export function ApplicationForm() {
             type="button"
             onClick={goNext}
             disabled={isLast}
-            aria-label="Next question"
+            aria-label={ui.nextQuestion}
             className="flex size-8 items-center justify-center border-l border-primary-foreground/20 bg-primary text-primary-foreground transition-colors hover:bg-primary/80 disabled:cursor-not-allowed disabled:opacity-40"
           >
             <ArrowDown className="size-4" />
@@ -251,11 +251,14 @@ export function ApplicationForm() {
 
 type StepBodyProps = {
   step: Step;
+  steps: Step[];
   index: number;
+  isLast: boolean;
   answers: Answers;
   error: string | null;
   submitError: string | null;
   submitting: boolean;
+  ui: FormUi;
   fieldRef: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>;
   onChange: (id: string, value: string) => void;
   onNext: () => void;
@@ -264,11 +267,14 @@ type StepBodyProps = {
 
 function StepBody({
   step,
+  steps,
   index,
+  isLast,
   answers,
   error,
   submitError,
   submitting,
+  ui,
   fieldRef,
   onChange,
   onNext,
@@ -309,7 +315,7 @@ function StepBody({
         </p>
         <div className="mt-8">
           <Button size="lg" onClick={onNext} className="px-5">
-            Continue
+            {ui.continueLabel}
           </Button>
         </div>
       </div>
@@ -317,8 +323,7 @@ function StepBody({
   }
 
   // question
-  const number = countableNumber(index);
-  const isLast = index === steps.length - 1;
+  const number = countableNumber(index, steps);
   return (
     <div>
       <div className="flex items-baseline gap-2 text-primary">
@@ -337,6 +342,7 @@ function StepBody({
         <QuestionField
           step={step}
           value={answers[step.id] ?? ""}
+          ui={ui}
           fieldRef={fieldRef}
           onChange={(v) => onChange(step.id, v)}
           onNext={onNext}
@@ -356,11 +362,11 @@ function StepBody({
             disabled={submitting}
             className="px-5"
           >
-            {submitting ? "Sending…" : isLast ? "Submit application" : "OK"}
+            {submitting ? ui.sending : isLast ? ui.submit : ui.ok}
           </Button>
           {!submitting && (
             <span className="hidden items-center gap-1 text-xs text-muted-foreground sm:flex">
-              press <kbd className="font-sans font-medium">Enter</kbd>
+              {ui.pressEnter} <kbd className="font-sans font-medium">Enter</kbd>
               <CornerDownLeft className="size-3" />
             </span>
           )}
@@ -373,6 +379,7 @@ function StepBody({
 type FieldProps = {
   step: QuestionStep;
   value: string;
+  ui: FormUi;
   fieldRef: React.RefObject<HTMLInputElement | HTMLTextAreaElement | null>;
   onChange: (value: string) => void;
   onNext: () => void;
@@ -385,6 +392,7 @@ const inputClass =
 function QuestionField({
   step,
   value,
+  ui,
   fieldRef,
   onChange,
   onNext,
@@ -429,6 +437,7 @@ function QuestionField({
     return (
       <DateField
         value={value}
+        ui={ui}
         fieldRef={fieldRef as React.RefObject<HTMLInputElement | null>}
         onChange={onChange}
         onNext={onNext}
@@ -455,7 +464,7 @@ function QuestionField({
         />
         <p className="mt-2 text-xs text-muted-foreground">
           <kbd className="font-sans font-medium">Shift</kbd> +{" "}
-          <kbd className="font-sans font-medium">Enter</kbd> to make a line break
+          <kbd className="font-sans font-medium">Enter</kbd> {ui.shiftEnter}
         </p>
       </div>
     );
@@ -493,12 +502,13 @@ function QuestionField({
 
 type DateFieldProps = {
   value: string;
+  ui: FormUi;
   fieldRef: React.RefObject<HTMLInputElement | null>;
   onChange: (value: string) => void;
   onNext: () => void;
 };
 
-function DateField({ value, fieldRef, onChange, onNext }: DateFieldProps) {
+function DateField({ value, ui, fieldRef, onChange, onNext }: DateFieldProps) {
   const [month, day, year] = value ? value.split("/") : ["", "", ""];
 
   const update = (m: string, d: string, y: string) => {
@@ -518,7 +528,7 @@ function DateField({ value, fieldRef, onChange, onNext }: DateFieldProps) {
   return (
     <div className="flex items-end gap-3">
       <label className="flex flex-col gap-1">
-        <span className="text-xs text-muted-foreground">Month</span>
+        <span className="text-xs text-muted-foreground">{ui.month}</span>
         <input
           ref={fieldRef}
           value={month ?? ""}
@@ -534,7 +544,7 @@ function DateField({ value, fieldRef, onChange, onNext }: DateFieldProps) {
       </label>
       <span className="pb-2 text-lg text-muted-foreground">/</span>
       <label className="flex flex-col gap-1">
-        <span className="text-xs text-muted-foreground">Day</span>
+        <span className="text-xs text-muted-foreground">{ui.day}</span>
         <input
           value={day ?? ""}
           inputMode="numeric"
@@ -549,7 +559,7 @@ function DateField({ value, fieldRef, onChange, onNext }: DateFieldProps) {
       </label>
       <span className="pb-2 text-lg text-muted-foreground">/</span>
       <label className="flex flex-col gap-1">
-        <span className="text-xs text-muted-foreground">Year</span>
+        <span className="text-xs text-muted-foreground">{ui.year}</span>
         <input
           value={year ?? ""}
           inputMode="numeric"
@@ -567,7 +577,7 @@ function DateField({ value, fieldRef, onChange, onNext }: DateFieldProps) {
 }
 
 /** Question number among answerable + legal steps (excludes the welcome screen). */
-function countableNumber(index: number): number {
+function countableNumber(index: number, steps: Step[]): number {
   let n = 0;
   for (let i = 1; i <= index; i++) {
     if (steps[i].kind !== "welcome") n++;

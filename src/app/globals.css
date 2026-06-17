@@ -7,8 +7,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
   --font-heading: var(--font-display);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -49,76 +49,76 @@
 }
 
 :root {
-  /* Boys To Men — "Earthy & weathered" brand system.
-     Oatmeal / clay + weathered forest-olive + ember accent + stone & charcoal.
-     Light = sun-bleached natural daylight; grounded, tactile, return-to-nature. */
-  --background: oklch(0.95 0.013 80); /* warm oatmeal */
-  --foreground: oklch(0.25 0.012 70); /* deep warm charcoal */
-  --card: oklch(0.97 0.011 82); /* light cream panel */
-  --card-foreground: oklch(0.25 0.012 70);
-  --popover: oklch(0.97 0.011 82);
-  --popover-foreground: oklch(0.25 0.012 70);
-  --primary: oklch(0.41 0.055 150); /* weathered forest green */
-  --primary-foreground: oklch(0.96 0.012 85);
-  --secondary: oklch(0.87 0.03 72); /* clay / tan */
-  --secondary-foreground: oklch(0.33 0.04 60);
-  --muted: oklch(0.91 0.016 76); /* muted sand */
-  --muted-foreground: oklch(0.42 0.024 68); /* stone grey-brown — darkened for legible nav/secondary text */
-  --accent: oklch(0.57 0.14 45); /* weathered ember / terracotta */
-  --accent-foreground: oklch(0.97 0.012 85);
+  /* Boys To Men — "Coastal & oceanic" brand system.
+     Sea-mist & sand + deep Atlantic blue + warm coral accent + teal & navy.
+     Light = bright coastal daylight; salt air, open water, return-to-the-sea. */
+  --background: oklch(0.96 0.012 220); /* pale sea mist */
+  --foreground: oklch(0.26 0.03 235); /* deep navy */
+  --card: oklch(0.98 0.01 215); /* light foam panel */
+  --card-foreground: oklch(0.26 0.03 235);
+  --popover: oklch(0.98 0.01 215);
+  --popover-foreground: oklch(0.26 0.03 235);
+  --primary: oklch(0.48 0.1 232); /* deep Atlantic blue */
+  --primary-foreground: oklch(0.97 0.01 210);
+  --secondary: oklch(0.86 0.045 205); /* soft aqua / shallow water */
+  --secondary-foreground: oklch(0.33 0.05 230);
+  --muted: oklch(0.92 0.016 215); /* pale tidal blue-grey */
+  --muted-foreground: oklch(0.44 0.028 232); /* slate blue — darkened for legible nav/secondary text */
+  --accent: oklch(0.66 0.15 38); /* warm coral */
+  --accent-foreground: oklch(0.98 0.01 60);
   --destructive: oklch(0.55 0.2 27);
-  --border: oklch(0.83 0.022 72); /* visible earthy border */
-  --input: oklch(0.83 0.022 72);
-  --ring: oklch(0.41 0.055 150);
-  --chart-1: oklch(0.41 0.055 150); /* forest */
-  --chart-2: oklch(0.55 0.06 120); /* olive */
-  --chart-3: oklch(0.57 0.14 45); /* ember */
-  --chart-4: oklch(0.67 0.07 66); /* clay gold */
-  --chart-5: oklch(0.3 0.035 150); /* deep moss */
+  --border: oklch(0.86 0.02 220); /* soft sea-glass border */
+  --input: oklch(0.86 0.02 220);
+  --ring: oklch(0.48 0.1 232);
+  --chart-1: oklch(0.48 0.1 232); /* ocean blue */
+  --chart-2: oklch(0.6 0.08 200); /* teal */
+  --chart-3: oklch(0.66 0.15 38); /* coral */
+  --chart-4: oklch(0.79 0.07 80); /* warm sand */
+  --chart-5: oklch(0.32 0.05 235); /* deep navy */
   --radius: 0.25rem; /* squared-off, rugged geometry */
-  --sidebar: oklch(0.93 0.014 78);
-  --sidebar-foreground: oklch(0.25 0.012 70);
-  --sidebar-primary: oklch(0.41 0.055 150);
-  --sidebar-primary-foreground: oklch(0.96 0.012 85);
-  --sidebar-accent: oklch(0.87 0.03 72);
-  --sidebar-accent-foreground: oklch(0.33 0.04 60);
-  --sidebar-border: oklch(0.83 0.022 72);
-  --sidebar-ring: oklch(0.41 0.055 150);
+  --sidebar: oklch(0.94 0.013 218);
+  --sidebar-foreground: oklch(0.26 0.03 235);
+  --sidebar-primary: oklch(0.48 0.1 232);
+  --sidebar-primary-foreground: oklch(0.97 0.01 210);
+  --sidebar-accent: oklch(0.86 0.045 205);
+  --sidebar-accent-foreground: oklch(0.33 0.05 230);
+  --sidebar-border: oklch(0.86 0.02 220);
+  --sidebar-ring: oklch(0.48 0.1 232);
 }
 
 .dark {
-  /* Forest dusk / campfire — deep forest-charcoal night with a glowing ember. */
-  --background: oklch(0.19 0.012 150);
-  --foreground: oklch(0.92 0.012 82);
-  --card: oklch(0.23 0.014 150);
-  --card-foreground: oklch(0.92 0.012 82);
-  --popover: oklch(0.23 0.014 150);
-  --popover-foreground: oklch(0.92 0.012 82);
-  --primary: oklch(0.6 0.07 150); /* lifted sage / moss */
-  --primary-foreground: oklch(0.16 0.014 150);
-  --secondary: oklch(0.29 0.018 120);
-  --secondary-foreground: oklch(0.92 0.012 82);
-  --muted: oklch(0.27 0.015 140);
-  --muted-foreground: oklch(0.7 0.016 80);
-  --accent: oklch(0.63 0.15 48); /* glowing ember */
-  --accent-foreground: oklch(0.17 0.025 50);
+  /* Deep sea at night — Atlantic navy depths with a glowing coral. */
+  --background: oklch(0.18 0.03 235);
+  --foreground: oklch(0.93 0.012 210);
+  --card: oklch(0.22 0.035 235);
+  --card-foreground: oklch(0.93 0.012 210);
+  --popover: oklch(0.22 0.035 235);
+  --popover-foreground: oklch(0.93 0.012 210);
+  --primary: oklch(0.68 0.11 215); /* lifted aqua / cyan */
+  --primary-foreground: oklch(0.16 0.03 235);
+  --secondary: oklch(0.3 0.03 210);
+  --secondary-foreground: oklch(0.93 0.012 210);
+  --muted: oklch(0.27 0.025 230);
+  --muted-foreground: oklch(0.72 0.02 210);
+  --accent: oklch(0.7 0.16 40); /* glowing coral */
+  --accent-foreground: oklch(0.18 0.03 40);
   --destructive: oklch(0.7 0.19 22);
   --border: oklch(1 0 0 / 12%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.6 0.07 150);
-  --chart-1: oklch(0.6 0.07 150);
-  --chart-2: oklch(0.55 0.06 120);
-  --chart-3: oklch(0.63 0.15 48);
-  --chart-4: oklch(0.68 0.07 66);
-  --chart-5: oklch(0.4 0.05 150);
-  --sidebar: oklch(0.23 0.014 150);
-  --sidebar-foreground: oklch(0.92 0.012 82);
-  --sidebar-primary: oklch(0.6 0.07 150);
-  --sidebar-primary-foreground: oklch(0.16 0.014 150);
-  --sidebar-accent: oklch(0.29 0.018 120);
-  --sidebar-accent-foreground: oklch(0.92 0.012 82);
+  --ring: oklch(0.68 0.11 215);
+  --chart-1: oklch(0.68 0.11 215);
+  --chart-2: oklch(0.6 0.08 200);
+  --chart-3: oklch(0.7 0.16 40);
+  --chart-4: oklch(0.78 0.07 80);
+  --chart-5: oklch(0.4 0.06 230);
+  --sidebar: oklch(0.22 0.035 235);
+  --sidebar-foreground: oklch(0.93 0.012 210);
+  --sidebar-primary: oklch(0.68 0.11 215);
+  --sidebar-primary-foreground: oklch(0.16 0.03 235);
+  --sidebar-accent: oklch(0.3 0.03 210);
+  --sidebar-accent-foreground: oklch(0.93 0.012 210);
   --sidebar-border: oklch(1 0 0 / 12%);
-  --sidebar-ring: oklch(0.6 0.07 150);
+  --sidebar-ring: oklch(0.68 0.11 215);
 }
 
 @layer base {
@@ -143,7 +143,7 @@
     font-family: var(--font-display), var(--font-sans), sans-serif;
     font-weight: 600;
   }
-  /* Section kicker: uppercase, tracked, ember label with a field-guide rule. */
+  /* Section kicker: uppercase, tracked, coral label with a field-guide rule. */
   .eyebrow {
     display: inline-flex;
     align-items: center;

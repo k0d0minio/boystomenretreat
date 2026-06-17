@@ -5,7 +5,7 @@ import { join } from "node:path";
 import { brand } from "@/lib/brand";
 
 // Favicon (browser tab). Generated from the BTM monogram so the tab icon matches
-// the on-site mark. Kept minimal — just the letters on a forest tile — for legibility
+// the on-site mark. Kept minimal — just the letters on an ocean tile — for legibility
 // at 32px, where a wave underline would only add noise.
 export const size = { width: 32, height: 32 };
 export const contentType = "image/png";
@@ -22,8 +22,8 @@ export default async function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: brand.forest,
-          color: brand.oatmeal,
+          background: brand.ocean,
+          color: brand.seafoam,
           borderRadius: 6,
           fontFamily: "Oswald",
           fontWeight: 700,
