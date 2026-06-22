@@ -29,7 +29,7 @@ export function Hero({
   };
 
   return (
-    <section className="relative isolate flex min-h-[90svh] items-center overflow-hidden border-b border-border">
+    <section className="relative isolate flex min-h-[90svh] items-end overflow-hidden border-b border-border">
       {/* Full-bleed hero photograph */}
       <Image
         src="/img/surfer-sunset-peace-sign.jpeg"
@@ -39,12 +39,13 @@ export function Hero({
         sizes="100vw"
         className="-z-20 object-cover object-center"
       />
-      {/* Legibility scrims: darken overall, deepen the bottom, and add a top scrim behind the header */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/45 to-black/55" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-32 bg-gradient-to-b from-black/60 to-transparent" />
+      {/* Legibility scrims kept light so the photo stays visible: a bottom-weighted
+          gradient anchors the copy, plus a slim top scrim behind the header. */}
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-28 bg-gradient-to-b from-black/55 to-transparent" />
 
-      <div className="mx-auto w-full max-w-6xl px-4 pb-20 pt-28 sm:px-6 sm:pb-28 sm:pt-32">
-        <motion.div variants={container} initial="hidden" animate="visible" className="mx-auto max-w-3xl text-center">
+      <div className="mx-auto w-full max-w-6xl px-4 pb-16 pt-32 sm:px-6 sm:pb-20">
+        <motion.div variants={container} initial="hidden" animate="visible" className="mx-auto max-w-3xl text-center [text-shadow:0_2px_12px_rgb(0_0_0/0.55)]">
           <motion.div variants={item} className="flex justify-center">
             <span className="inline-flex items-center gap-2 rounded-sm border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white backdrop-blur-sm">
               <CalendarDays className="size-3.5" />
@@ -90,7 +91,7 @@ export function Hero({
           variants={container}
           initial="hidden"
           animate="visible"
-          className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4"
+          className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4"
         >
           {hero.stats.map((stat) => (
             <motion.div

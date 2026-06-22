@@ -32,7 +32,7 @@ export const fr: Dictionary = {
     title: "Boys To Men Retreat",
     subtitle: "Accompagner les jeunes garçons à travers le défi, l'aventure et la découverte de soi",
     primaryCta: { label: "Réserver une place", href: "/#contact" },
-    secondaryCta: { label: "Pourquoi ça existe", href: "/#why" },
+    secondaryCta: { label: "En savoir plus sur la retraite", href: "/#why" },
     stats: [
       { value: "4 jours", label: "4 nuits" },
       { value: "9–16", label: "ans" },
