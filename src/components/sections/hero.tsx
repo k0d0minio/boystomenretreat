@@ -18,31 +18,62 @@ export function Hero({
   dict: Dictionary["hero"];
 }) {
   const reduceMotion = useReducedMotion();
+  const ease = [0.21, 0.47, 0.32, 0.98] as const;
+
+  // The photograph is the hero: on load it reveals clean and unobstructed, then
+  // the legibility scrim and copy settle in over it. `reveal` is the beat we wait
+  // before any overlay appears, so the image reads first. Reduced motion skips
+  // straight to the final state.
+  const reveal = reduceMotion ? 0 : 0.9;
 
   const container = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+    visible: { transition: { staggerChildren: 0.1, delayChildren: reveal + 0.1 } },
+  };
+  const stats = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.08, delayChildren: reveal + 0.45 } },
   };
   const item = {
     hidden: { opacity: 0, y: reduceMotion ? 0 : 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] as const } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
   };
 
   return (
     <section className="relative isolate flex min-h-[90svh] items-end overflow-hidden border-b border-border">
-      {/* Full-bleed hero photograph */}
-      <Image
-        src="/img/surfer-sunset-peace-sign.jpeg"
-        alt="A surfer sits on their board at sunset, throwing a peace sign as the sun dips into the ocean"
-        fill
-        priority
-        sizes="100vw"
-        className="-z-20 object-cover object-center"
+      {/* Full-bleed hero photograph — slow ken-burns settle so it draws the eye on load */}
+      <motion.div
+        className="absolute inset-0 -z-20"
+        initial={{ scale: reduceMotion ? 1 : 1.08 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: reduceMotion ? 0 : 2.4, ease }}
+      >
+        <Image
+          src="/img/surfer-sunset-peace-sign.jpeg"
+          alt="A surfer sits on their board at sunset, throwing a peace sign as the sun dips into the ocean"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      </motion.div>
+
+      {/* Legibility scrims fade in only after the photo has had its clean moment, and
+          are kept light + bottom-weighted so the image stays the focus. */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-black/75 via-black/15 to-transparent"
+        initial={{ opacity: reduceMotion ? 1 : 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: reveal, duration: reduceMotion ? 0 : 1.1, ease }}
       />
-      {/* Legibility scrims kept light so the photo stays visible: a bottom-weighted
-          gradient anchors the copy, plus a slim top scrim behind the header. */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-28 bg-gradient-to-b from-black/55 to-transparent" />
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-28 bg-gradient-to-b from-black/45 to-transparent"
+        initial={{ opacity: reduceMotion ? 1 : 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: reveal, duration: reduceMotion ? 0 : 1.1, ease }}
+      />
 
       <div className="mx-auto w-full max-w-6xl px-4 pb-16 pt-32 sm:px-6 sm:pb-20">
         <motion.div variants={container} initial="hidden" animate="visible" className="mx-auto max-w-3xl text-center [text-shadow:0_2px_12px_rgb(0_0_0/0.55)]">
@@ -88,7 +119,7 @@ export function Hero({
         </motion.div>
 
         <motion.dl
-          variants={container}
+          variants={stats}
           initial="hidden"
           animate="visible"
           className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4"
