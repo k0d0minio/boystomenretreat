@@ -40,7 +40,7 @@ export function Hero({
   };
 
   return (
-    <section className="relative isolate flex min-h-[90svh] items-end overflow-hidden border-b border-border">
+    <section className="relative isolate flex min-h-[90svh] items-center overflow-hidden border-b border-border">
       {/* Full-bleed hero photograph — slow ken-burns settle so it draws the eye on load */}
       <motion.div
         className="absolute inset-0 -z-20"
@@ -75,7 +75,7 @@ export function Hero({
         transition={{ delay: reveal, duration: reduceMotion ? 0 : 1.1, ease }}
       />
 
-      <div className="mx-auto w-full max-w-6xl px-4 pb-16 pt-32 sm:px-6 sm:pb-20">
+      <div className="mx-auto w-full max-w-6xl px-4 pb-20 pt-28 sm:px-6 sm:pb-28 sm:pt-32">
         <motion.div variants={container} initial="hidden" animate="visible" className="mx-auto max-w-3xl text-center [text-shadow:0_2px_12px_rgb(0_0_0/0.55)]">
           <motion.div variants={item} className="flex justify-center">
             <span className="inline-flex items-center gap-2 rounded-sm border border-white/30 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-widest text-white backdrop-blur-sm">
@@ -122,7 +122,7 @@ export function Hero({
           variants={stats}
           initial="hidden"
           animate="visible"
-          className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4"
+          className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4"
         >
           {hero.stats.map((stat) => (
             <motion.div
