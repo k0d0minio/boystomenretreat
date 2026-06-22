@@ -32,7 +32,7 @@ export const nl: Dictionary = {
     title: "Boys To Men Retreat",
     subtitle: "Jonge mannen begeleiden door uitdaging, avontuur en zelfontdekking",
     primaryCta: { label: "Reserveer een plek", href: "/#contact" },
-    secondaryCta: { label: "Waarom het bestaat", href: "/#why" },
+    secondaryCta: { label: "Meer over de retreat", href: "/#why" },
     stats: [
       { value: "4 dagen", label: "4 nachten" },
       { value: "9–16", label: "jaar oud" },

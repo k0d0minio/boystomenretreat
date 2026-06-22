@@ -31,7 +31,7 @@ export const en = {
     title: "Boys To Men Retreat",
     subtitle: "Guiding young men through challenge, adventure and self-discovery",
     primaryCta: { label: "Book a place", href: "/#contact" },
-    secondaryCta: { label: "Why it exists", href: "/#why" },
+    secondaryCta: { label: "Learn more about the retreat", href: "/#why" },
     stats: [
       { value: "4 days", label: "4 nights" },
       { value: "9–16", label: "years old" },
