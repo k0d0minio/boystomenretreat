@@ -9,20 +9,7 @@ import { sendApplicationEmail, type Answers } from "@/lib/application-email";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** Fields the form marks as required — mirrors `required: true` in the steps. */
-const REQUIRED_IDS = [
-  "parentEmail",
-  "parentNames",
-  "countryTown",
-  "occupation",
-  "parentPhone",
-  "familyStructure",
-  "childName",
-  "childAge",
-  "childDescription",
-  "emergencyContact",
-  "photoConsent",
-  "dateSigned",
-];
+const REQUIRED_IDS = ["name", "email", "phone", "message"];
 
 export async function POST(request: Request) {
   let answers: Answers;
@@ -46,9 +33,9 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!EMAIL_RE.test(answers.parentEmail.trim())) {
+  if (!EMAIL_RE.test(answers.email.trim())) {
     return Response.json(
-      { error: "Invalid parent email address." },
+      { error: "Invalid email address." },
       { status: 400 },
     );
   }

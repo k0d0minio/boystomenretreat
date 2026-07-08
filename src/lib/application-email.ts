@@ -56,14 +56,9 @@ export function buildApplicationEmail(answers: Answers): {
 } {
   const fields = collectFields(answers);
 
-  const childName = (answers.childName ?? "").trim();
-  const childAge = (answers.childAge ?? "").trim();
-  const who = childName
-    ? childAge
-      ? `${childName} (age ${childAge})`
-      : childName
-    : "new applicant";
-  const subject = `New retreat application — ${who}`;
+  const name = (answers.name ?? "").trim();
+  const who = name || "new enquiry";
+  const subject = `New retreat enquiry — ${who}`;
 
   const text = [
     "New Boys To Men Retreat application",
@@ -110,8 +105,8 @@ export async function sendApplicationEmail(answers: Answers) {
   const resend = new Resend(apiKey);
   const { subject, html, text } = buildApplicationEmail(answers);
 
-  const parentEmail = (answers.parentEmail ?? "").trim();
-  const replyTo = EMAIL_RE.test(parentEmail) ? parentEmail : undefined;
+  const email = (answers.email ?? "").trim();
+  const replyTo = EMAIL_RE.test(email) ? email : undefined;
 
   const { data, error } = await resend.emails.send({
     from: process.env.RESEND_FROM ?? DEFAULT_FROM,
