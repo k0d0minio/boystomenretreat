@@ -2,7 +2,7 @@
 
 The visual language for the Boys To Men Retreat site. The system is **token-driven**:
 colours, type and radius are defined once as CSS variables in
-[`src/app/globals.css`](src/app/globals.css) and flow through the shadcn/ui primitives into
+[`src/app/globals.css`](../../src/app/globals.css) and flow through the shadcn/ui primitives into
 every section. **Change values at the token layer — never hardcode colours in components.**
 
 ## Brand mood
@@ -58,7 +58,7 @@ eyebrows. Don't spread it across body UI, or it stops meaning "act here".
 | Display / headings | **Oswald** (condensed, variable) via `--font-display` | `h1`–`h3`, stat figures, card titles — applied with `.font-heading` |
 | Body | **Geist** via `--font-sans` | default for all running text (set on `html`) |
 
-Fonts are loaded with `next/font/google` in [`src/app/layout.tsx`](src/app/layout.tsx) and
+Fonts are loaded with `next/font/google` in [`src/app/layout.tsx`](../../src/app/layout.tsx) and
 exposed as CSS variables; the `@theme` block in `globals.css` maps `--font-heading` →
 `--font-display`.
 
@@ -95,15 +95,15 @@ exposed as CSS variables; the `@theme` block in `globals.css` maps `--font-headi
 
 ## Components
 
-- **Buttons** ([`src/components/ui/button.tsx`](src/components/ui/button.tsx)) — variants:
+- **Buttons** ([`src/components/ui/button.tsx`](../../src/components/ui/button.tsx)) — variants:
   `default` (ocean blue), **`accent`** (coral, for conversion CTAs), `outline`, `secondary`,
   `ghost`, `link`. Use `accent` for the one main action in a view; `default`/`outline` for
   everything else.
 - **Cards, badges, sheet, accordion, nav** — standard shadcn/ui primitives, fully token-driven;
   they restyle automatically with the tokens above.
-- **Theme toggle** ([`src/components/theme-toggle.tsx`](src/components/theme-toggle.tsx)) —
+- **Theme toggle** ([`src/components/theme-toggle.tsx`](../../src/components/theme-toggle.tsx)) —
   light/dark switch in the header, powered by `next-themes`
-  ([`theme-provider.tsx`](src/components/theme-provider.tsx)) with `attribute="class"`,
+  ([`theme-provider.tsx`](../../src/components/theme-provider.tsx)) with `attribute="class"`,
   `defaultTheme="light"` and system-preference fallback.
 
 ## Extending the system
